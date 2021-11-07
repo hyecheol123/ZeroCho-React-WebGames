@@ -23,7 +23,7 @@ export default class GuGuDan extends React.Component {
 
     // Bind functions
     this.inputValueChange = this.inputValueChange.bind(this);
-    this.resultSubmit = this.resultSubmit.bind(this);
+    this.submitResult = this.submitResult.bind(this);
   }
 
   /**
@@ -37,30 +37,34 @@ export default class GuGuDan extends React.Component {
   }
 
   /**
-   * EventHandler of form's submit event
-   * @param {Event} submitEvent when form submitted, event fired
+   * EventHandler of input's keydown event
+   *
+   * @param {Event} keyboardEvent when keyboard pressed, event fired
    */
-  resultSubmit(submitEvent) {
-    submitEvent.preventDefault();
+  submitResult(keyboardEvent) {
+    // When enter pressed, submit the result
+    if (keyboardEvent.key === 'Enter') {
+      keyboardEvent.preventDefault();
 
-    // GuGuDan logic
-    if (
-      parseInt(this.state.inputValue) ===
-      this.state.firstNum * this.state.secondNum
-    ) {
-      // When correct
-      this.setState({
-        result: 'Correct',
-        firstNum: Math.ceil(Math.random() * 9),
-        secondNum: Math.ceil(Math.random() * 9),
-        inputValue: '',
-      });
-    } else {
-      // When wrong
-      this.setState({
-        result: 'Incorrect',
-        inputValue: '',
-      });
+      // GuGuDan logic
+      const multiplication = this.state.firstNum * this.state.secondNum;
+      if (parseInt(this.state.inputValue) === multiplication) {
+        // When correct
+        this.setState({
+          result: `Correct: ${this.state.firstNum} × ${this.state.secondNum} = ${multiplication}`,
+          firstNum: Math.ceil(Math.random() * 9),
+          secondNum: Math.ceil(Math.random() * 9),
+          inputValue: '',
+        });
+      } else {
+        // When wrong
+        this.setState({
+          result: `Incorrect: ${this.state.firstNum} × ${this.state.secondNum} = ${multiplication}`,
+          firstNum: Math.ceil(Math.random() * 9),
+          secondNum: Math.ceil(Math.random() * 9),
+          inputValue: '',
+        });
+      }
     }
   }
 
@@ -72,17 +76,18 @@ export default class GuGuDan extends React.Component {
   render() {
     return (
       <>
+        <h3>Press Enter to Submit</h3>
         <div>
-          {this.state.firstNum} x {this.state.secondNum}
+          <span>
+            {this.state.firstNum} × {this.state.secondNum} ={' '}
+            <input
+              type="number"
+              value={this.state.inputValue}
+              onChange={this.inputValueChange}
+              onKeyDown={this.submitResult}
+            />
+          </span>
         </div>
-        <form onSubmit={this.resultSubmit}>
-          <input
-            type="number"
-            value={this.state.inputValue}
-            onChange={this.inputValueChange}
-          />
-          <button>Reply</button>
-        </form>
         <div>{this.state.result}</div>
       </>
     );
