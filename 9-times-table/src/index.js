@@ -1,5 +1,5 @@
 import React from 'react';
 import ReactDom from 'react-dom';
-import App from './App';
+import GuGuDan from './GuGuDan';
 
-ReactDom.render(<App />, document.getElementById('root'));
+ReactDom.render(<GuGuDan />, document.getElementById('root'));
