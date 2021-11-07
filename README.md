@@ -72,6 +72,7 @@ Used React Class to build application.
 **What I added/modified**
 
 - Setup React Development Environment (Use Babel and Webpack)
+  - Use ESLint and Prettier for code styling
 - Display correct answers if wrong
 - Design for both mobile and desktop site
 

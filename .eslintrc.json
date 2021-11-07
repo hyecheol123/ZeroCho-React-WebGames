@@ -1,0 +1,21 @@
+{
+  "env": {
+      "es2021": true,
+      "node": true
+  },
+  "plugins": ["prettier"],
+  "extends": [
+      "react-app", "google", "plugin:prettier/recommended"
+  ],
+  "parserOptions": {
+      "ecmaVersion": 13,
+      "sourceType": "module",
+      "ecmaFeatures": {
+          "jsx": true
+      }
+  },
+  "rules": {
+      "prettier/prettier": "error"
+  },
+  "ignorePatterns": ["*/dist/*"]
+}

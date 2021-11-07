@@ -15,7 +15,9 @@
   "homepage": "https://github.com/hyecheol123/ZeroCho-React-WebGames#readme",
   "scripts": {
     "dev:9-times-table": "webpack serve --mode development --open --hot --config ./9-times-table/webpack.config.js --progress",
-    "build:9-times-table": "webpack --config ./9-times-table/webpack.config.js --progress --mode production"
+    "build:9-times-table": "webpack --config ./9-times-table/webpack.config.js --progress --mode production",
+    "lint": "prettier --check \"**/*.{js,jsx}\" && eslint \"**/*.{js,jsx}\"",
+    "lint:fix": "prettier --write \"**/*.{js,jsx}\" && eslint --fix \"**/*.{js,jsx}\""
   },
   "dependencies": {
     "react": "^17.0.2",
@@ -27,7 +29,13 @@
     "@babel/preset-react": "^7.16.0",
     "babel-loader": "^8.2.3",
     "css-loader": "^6.5.1",
+    "eslint": "^7.32.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-config-react-app": "^6.0.0",
+    "eslint-plugin-prettier": "^4.0.0",
     "html-webpack-plugin": "^5.5.0",
+    "prettier": "^2.4.1",
     "style-loader": "^3.3.1",
     "webpack": "^5.62.1",
     "webpack-cli": "^4.9.1",

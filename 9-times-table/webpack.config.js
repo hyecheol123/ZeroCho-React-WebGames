@@ -27,13 +27,13 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: ["style-loader", "css-loader"],
-      }
-    ]
+        use: ['style-loader', 'css-loader'],
+      },
+    ],
   },
   plugins: [
-    new webpack.ProvidePlugin({ React: 'react'}),
+    new webpack.ProvidePlugin({ React: 'react' }),
     new webpack.HotModuleReplacementPlugin(),
-    new HtmlWebpackPlugin({template: './9-times-table/public/index.html'}),
+    new HtmlWebpackPlugin({ template: './9-times-table/public/index.html' }),
   ],
 };
