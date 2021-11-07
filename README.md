@@ -14,6 +14,23 @@ Lecture Link: https://www.youtube.com/playlist?list=PLcqDmjxt30RtqbStQqk-eYMK8N-
 
 ## What I Learn
 
+- `node` packages for React Dev Environment
+  - **React**
+    - `react`: React Core
+    - `react-dom`: Connect React and DOM
+  - **Babel**
+    - `@babel/core`: Babel Core
+    - `@babel/preset-react`: Transfiling React JSX
+    - `@babel/preset-env`: Transfiling ES6+ Codes
+  - **Webpack**
+    - `webpack`: Webpack Core
+    - `webpack-cli`: Use Webpack on command line interface
+    - `webpack-dev-server`: Build webpack in-memory and run development server
+    - `babel-loader`: Transfiling JSX and ES6+ syntax
+    - `style-loader`: Wrap and inject compiled CSS file
+    - `css-loader`: Interpret CSS file so that JavaScript can understand
+    - `html-webpack-plugin`: Inject bundled JavaScript files to HTML file
+    - `mini-css-extract-plugin`: Separate CSS files
 - **React.Component** is building structure of React elements that will be appear on the screen.
   - All components should extends `React.Component`.
   - All components should override `render()` function.
@@ -40,3 +57,27 @@ Lecture Link: https://www.youtube.com/playlist?list=PLcqDmjxt30RtqbStQqk-eYMK8N-
   - React need at least one element (the root div`<div id='root>`) to render the React components inside.
 
 ## Project
+
+### Times Table Game
+
+Followed lecture contents to build simple Times Table game.
+Used React Class to build application.
+
+**Feature List (From Lecture)**
+
+- Randomly select two number and ask user for the answer of multiplication.
+- Display the result of quiz.
+- Wrote codes in the browser (Importing JavaScript from CDN)
+
+**What I added/modified**
+
+- Setup React Development Environment (Use Babel and Webpack)
+- Display correct answers if wrong
+- Design for both mobile and desktop site
+
+|      ![]()      |
+| :-------------: |
+| _Demo Image of_ |
+
+Code Link:  
+Demo Link:
