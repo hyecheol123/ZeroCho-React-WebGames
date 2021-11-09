@@ -60,21 +60,25 @@ export default class GuGuDan extends React.Component {
         const multiplication = this.state.firstNum * this.state.secondNum;
         if (parseInt(this.state.inputValue) === multiplication) {
           // When correct
-          this.setState({
-            result: 'Correct!!',
-            equation: `${this.state.firstNum} × ${this.state.secondNum} = ${userInput}`,
-            firstNum: Math.ceil(Math.random() * 9),
-            secondNum: Math.ceil(Math.random() * 9),
-            inputValue: '',
+          this.setState((prevState) => {
+            return {
+              result: 'Correct!!',
+              equation: `${prevState.firstNum} × ${prevState.secondNum} = ${userInput}`,
+              firstNum: Math.ceil(Math.random() * 9),
+              secondNum: Math.ceil(Math.random() * 9),
+              inputValue: '',
+            };
           });
         } else {
           // When wrong
-          this.setState({
-            result: 'Incorrect!!',
-            equation: `${this.state.firstNum} × ${this.state.secondNum} ≠ ${userInput}`,
-            firstNum: Math.ceil(Math.random() * 9),
-            secondNum: Math.ceil(Math.random() * 9),
-            inputValue: '',
+          this.setState((prevState) => {
+            return {
+              result: 'Incorrect!!',
+              equation: `${prevState.firstNum} × ${prevState.secondNum} ≠ ${userInput}`,
+              firstNum: Math.ceil(Math.random() * 9),
+              secondNum: Math.ceil(Math.random() * 9),
+              inputValue: '',
+            };
           });
         }
       }
