@@ -63,6 +63,32 @@ Lecture Link: https://www.youtube.com/playlist?list=PLcqDmjxt30RtqbStQqk-eYMK8N-
 - **ReactDOM.render()** renders a React element into the existing DOM.
   - This function actually draws the React Components to the web browsers.
   - React need at least one element (the root div`<div id='root>`) to render the React components inside.
+- **Functional Components** only contains `render()` part of React Component (Class component), which used when we do not need `state` and `ref`.
+- **React Hooks** is a new way (recommend way) to define a React component.
+  - It adds `state` and `ref` support to functional component.
+  - **React.useState()** is used to define a state and its own `setState()` method.
+  - **React.useRef()** is used to create new reference to the DOM object.
+    - When access to the DOM Element, need to use `RefObject.current`.
+  - EventHandler function should be arrow function.
+  - ```JavaScript
+    // Example of using React Hooks
+    const GuGuDan = () => {
+      // State [stateName, setFunction]
+      const [state, setState] = React.useState('Initial Value');
+      // ref
+      const inputRef = React.useRef();
+      // EventHandler
+      const onChangeInput = (event) => {
+        setState(e.target.value); // Modify the state
+        inputRef.current.focus();
+      }
+      return (
+        <div>Hello, World!</div>
+        <input ref={inputRef} onChange={onChangeInput} value={state}/>
+      )
+    }
+    ```
+  - Note that once state changed, all codes in the function (Hooks) re-run (but in optimized way).
 
 ## Project
 
