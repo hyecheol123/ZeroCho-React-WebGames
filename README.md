@@ -73,7 +73,7 @@ Used React Class to build application.
 
 - Setup React Development Environment (Use Babel and Webpack)
   - Use ESLint and Prettier for code styling
-- Display correct answers if wrong
+- Enhance result message
 - Design for both mobile and desktop site
 
 |      ![]()      |

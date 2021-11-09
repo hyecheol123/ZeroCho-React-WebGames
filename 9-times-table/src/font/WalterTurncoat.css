@@ -1,0 +1,7 @@
+@font-face {
+  font-family: 'Walter Turncoat';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Walter Turncoat'),
+    url('./WalterTurncoat-Regular.woff') format('woff');
+}

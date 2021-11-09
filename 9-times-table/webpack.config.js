@@ -17,6 +17,7 @@ module.exports = {
   devServer: {
     port: 5500,
     hot: true,
+    allowedHosts: ['.loca.lt'],
   },
   module: {
     rules: [

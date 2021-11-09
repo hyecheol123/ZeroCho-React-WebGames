@@ -1,4 +1,5 @@
 import React from 'react';
+import './font/WalterTurncoat.css';
 import './GuGuDan.css';
 
 /**
@@ -18,7 +19,9 @@ export default class GuGuDan extends React.Component {
       firstNum: Math.ceil(Math.random() * 9),
       secondNum: Math.ceil(Math.random() * 9),
       inputValue: '',
-      result: '',
+      // Result and Equation will be combined to generate result display
+      result: 'previous result',
+      equation: 'will show here!!',
     };
 
     // Bind functions
@@ -46,24 +49,34 @@ export default class GuGuDan extends React.Component {
     if (keyboardEvent.key === 'Enter') {
       keyboardEvent.preventDefault();
 
-      // GuGuDan logic
-      const multiplication = this.state.firstNum * this.state.secondNum;
-      if (parseInt(this.state.inputValue) === multiplication) {
-        // When correct
-        this.setState({
-          result: `Correct: ${this.state.firstNum} × ${this.state.secondNum} = ${multiplication}`,
-          firstNum: Math.ceil(Math.random() * 9),
-          secondNum: Math.ceil(Math.random() * 9),
-          inputValue: '',
-        });
+      // Check for user's input
+      const userInput = parseInt(this.state.inputValue);
+      if (isNaN(userInput)) {
+        // When the input is not a number (or empty)
+        // Do nothing
+        return;
       } else {
-        // When wrong
-        this.setState({
-          result: `Incorrect: ${this.state.firstNum} × ${this.state.secondNum} = ${multiplication}`,
-          firstNum: Math.ceil(Math.random() * 9),
-          secondNum: Math.ceil(Math.random() * 9),
-          inputValue: '',
-        });
+        // GuGuDan logic
+        const multiplication = this.state.firstNum * this.state.secondNum;
+        if (parseInt(this.state.inputValue) === multiplication) {
+          // When correct
+          this.setState({
+            result: 'Correct!!',
+            equation: `${this.state.firstNum} × ${this.state.secondNum} = ${userInput}`,
+            firstNum: Math.ceil(Math.random() * 9),
+            secondNum: Math.ceil(Math.random() * 9),
+            inputValue: '',
+          });
+        } else {
+          // When wrong
+          this.setState({
+            result: 'Incorrect!!',
+            equation: `${this.state.firstNum} × ${this.state.secondNum} ≠ ${userInput}`,
+            firstNum: Math.ceil(Math.random() * 9),
+            secondNum: Math.ceil(Math.random() * 9),
+            inputValue: '',
+          });
+        }
       }
     }
   }
@@ -76,19 +89,29 @@ export default class GuGuDan extends React.Component {
   render() {
     return (
       <>
-        <h3>Press Enter to Submit</h3>
-        <div>
-          <span>
-            {this.state.firstNum} × {this.state.secondNum} ={' '}
+        <h3>
+          <span className="avoid-wrap">Press Enter&nbsp;</span>
+          <span className="avoid-wrap">To Submit</span>
+        </h3>
+        <div id="content-wrapper">
+          <div id="question">
+            {`${this.state.firstNum} × ${this.state.secondNum} =`}&nbsp;
             <input
               type="number"
               value={this.state.inputValue}
+              id="answer"
               onChange={this.inputValueChange}
               onKeyDown={this.submitResult}
+              required
+              min="0"
             />
-          </span>
+          </div>
+          <div id="result">
+            <span className="avoid-wrap">{this.state.result}&nbsp;</span>
+            <br />
+            <span className="avoid-wrap">{this.state.equation}</span>
+          </div>
         </div>
-        <div>{this.state.result}</div>
       </>
     );
   }
