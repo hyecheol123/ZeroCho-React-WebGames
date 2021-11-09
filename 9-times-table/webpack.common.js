@@ -1,11 +1,8 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
-const prod = process.env.NODE_ENV === 'production';
 
 module.exports = {
-  mode: prod ? 'production' : 'development',
-  devtool: prod ? '' : 'eval-source-map',
   entry: './9-times-table/src/index.js',
   resolve: {
     extensions: ['.js', '.jsx'],
@@ -13,11 +10,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, './dist'),
     filename: 'bundle.js',
-  },
-  devServer: {
-    port: 5500,
-    hot: true,
-    allowedHosts: ['.loca.lt'],
+    clean: true,
   },
   module: {
     rules: [
