@@ -58,7 +58,7 @@ Lecture Link: https://www.youtube.com/playlist?list=PLcqDmjxt30RtqbStQqk-eYMK8N-
 
 ## Project
 
-### Times Table Game
+### Times Table (GuGuDan) Game
 
 Followed lecture contents to build simple Times Table game.
 Used React Class to build application.
@@ -76,9 +76,9 @@ Used React Class to build application.
 - Enhance result message
 - Design for both mobile and desktop site
 
-|      ![]()      |
-| :-------------: |
-| _Demo Image of_ |
+|            ![]()             |
+| :--------------------------: |
+| _Demo Image of GuGuDan Game_ |
 
-Code Link:  
-Demo Link:
+Code Link: https://github.com/hyecheol123/ZeroCho-React-WebGames/tree/main/9-times-table  
+Demo Link: https://demo1.hcjang.com/gugudan-game

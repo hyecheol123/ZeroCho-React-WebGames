@@ -5,7 +5,7 @@ const prod = process.env.NODE_ENV === 'production';
 
 module.exports = {
   mode: prod ? 'production' : 'development',
-  devtool: prod ? 'hidden-source-map' : 'eval',
+  devtool: prod ? '' : 'eval-source-map',
   entry: './9-times-table/src/index.js',
   resolve: {
     extensions: ['.js', '.jsx'],
