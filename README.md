@@ -98,3 +98,5 @@ Followed lecture contents to build simple Times Table (GuGuDan) game.
 Used React Class to build application.
 
 Detailed information can be found here: https://github.com/hyecheol123/ZeroCho-React-WebGames/tree/main/9-times-table
+
+### Word Relay (끝말잇기) Game
