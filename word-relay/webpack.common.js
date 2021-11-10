@@ -8,7 +8,7 @@ module.exports = {
     extensions: ['.js', '.jsx'],
   },
   output: {
-    path: path.resolve(__dirname, './dist'),
+    path: path.join(__dirname, 'dist'),
     filename: 'bundle.js',
     clean: true,
   },
@@ -16,7 +16,7 @@ module.exports = {
     rules: [
       {
         test: /\.(js|jsx)$/,
-        exclude: path.resolve(__dirname, './node_modules/'),
+        exclude: path.join(__dirname, '..', 'node_modules'),
         loader: 'babel-loader',
       },
       {
