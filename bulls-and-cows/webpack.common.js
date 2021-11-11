@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 
 module.exports = {
-  entry: './word-relay/src/index.js',
+  entry: './bulls-and-cows/src/index.js',
   resolve: {
     extensions: ['.js', '.jsx'],
   },
@@ -28,6 +28,6 @@ module.exports = {
   plugins: [
     new webpack.ProvidePlugin({ React: 'react' }),
     new webpack.HotModuleReplacementPlugin(),
-    new HtmlWebpackPlugin({ template: './word-relay/public/index.html' }),
+    new HtmlWebpackPlugin({ template: './bulls-and-cows/public/index.html' }),
   ],
 };

@@ -16,8 +16,8 @@
   "scripts": {
     "dev:9-times-table": "webpack serve --mode development --open --hot --config ./9-times-table/webpack.dev.js --progress",
     "build:9-times-table": "webpack --config ./9-times-table/webpack.prod.js --progress",
-    "dev:word-relay": "webpack serve --mode development --open --hot --config ./word-relay/webpack.dev.js --progress",
-    "build:word-relay": "webpack --config ./word-relay/webpack.prod.js --progress",
+    "dev:bulls-and-cows": "webpack serve --mode development --open --hot --config ./bulls-and-cows/webpack.dev.js --progress",
+    "build:bulls-and-cows": "webpack --config ./bulls-and-cows/webpack.prod.js --progress",
     "lint": "prettier --check \"**/*.{js,jsx}\" && eslint \"**/*.{js,jsx}\"",
     "lint:fix": "prettier --write \"**/*.{js,jsx}\" && eslint --fix \"**/*.{js,jsx}\""
   },

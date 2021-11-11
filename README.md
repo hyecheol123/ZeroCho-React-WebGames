@@ -60,6 +60,9 @@ Lecture Link: https://www.youtube.com/playlist?list=PLcqDmjxt30RtqbStQqk-eYMK8N-
     - Notation: `<React.Fragment> ... </React.Fragment>` or `<> ... </>`
 - Recommend NOT to mix JSX and JS Codes.
   - JavaScript logics can be implemented as Class Methods.
+- Element's `class` and `for` (only `label`) properties cannot be used in JSX.
+  - The HTML `class` property is set by `className` property of JSX component.
+  - The HTML `for` property is set by `htmlFor` property of JSX component.
 - **ReactDOM.render()** renders a React element into the existing DOM.
   - This function actually draws the React Components to the web browsers.
   - React need at least one element (the root div`<div id='root>`) to render the React components inside.
@@ -99,4 +102,4 @@ Used React Class to build application.
 
 Detailed information can be found here: https://github.com/hyecheol123/ZeroCho-React-WebGames/tree/main/9-times-table
 
-### Word Relay (끝말잇기) Game
+### Bulls and Cows (숫자야구) Game
