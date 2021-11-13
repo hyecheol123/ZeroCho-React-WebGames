@@ -1,4 +1,5 @@
 import react from 'react';
+import Trial from './Trial';
 
 /**
  * Choose four different random numbers
@@ -32,13 +33,13 @@ const BullsAndCows = () => {
   return (
     <>
       <h1>{result}</h1>
-      <form onSUbmit={onFormSubmit}>
+      <form onSubmit={onFormSubmit}>
         <input maxLength={4} value={value} onChange={onInputChange} />
       </form>
       <div>Tries: {tries.length}</div>
       <ul>
         {tries.map((trial) => (
-          <li key={trial}>{trial}</li>
+          <Trial trial={trial} />
         ))}
       </ul>
     </>

@@ -96,6 +96,11 @@ Lecture Link: https://www.youtube.com/playlist?list=PLcqDmjxt30RtqbStQqk-eYMK8N-
   - Can use index as a key, but it is an anti-pattern.
     It may break the application and cause to display wrong data.
     - Reference Article: https://robinpokorny.medium.com/index-as-a-key-is-an-anti-pattern-e0349aece318
+- **Props** are used to pass arguments to React Component.
+  - Developers may separate Components to increase readability and reusability.
+  - From callee, _props_ are set using HTML attribute syntax. (e.g. `<Trial value={value} index={index}/>`)
+  - Inside the component, the `props` object contains all passed argument.
+  - A parent component _passes_ props to the child components.
 
 ## Project
 
