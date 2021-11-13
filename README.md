@@ -92,6 +92,10 @@ Lecture Link: https://www.youtube.com/playlist?list=PLcqDmjxt30RtqbStQqk-eYMK8N-
     }
     ```
   - Note that once state changed, all codes in the function (Hooks) re-run (but in optimized way).
+- Each child in a list needs to have a unique **key**, in order to identify which element to access (change, modify, delete).
+  - Can use index as a key, but it is an anti-pattern.
+    It may break the application and cause to display wrong data.
+    - Reference Article: https://robinpokorny.medium.com/index-as-a-key-is-an-anti-pattern-e0349aece318
 
 ## Project
 
@@ -103,3 +107,8 @@ Used React Class to build application.
 Detailed information can be found here: https://github.com/hyecheol123/ZeroCho-React-WebGames/tree/main/9-times-table
 
 ### Bulls and Cows (숫자야구) Game
+
+Followed lecture contents to build bulls _Bulls and Cows_ game.
+Used React Hooks to build application.
+
+Detailed information can be found here: https://github.com/hyecheol123/ZeroCho-React-WebGames/tree/main/bulls-and-cows
