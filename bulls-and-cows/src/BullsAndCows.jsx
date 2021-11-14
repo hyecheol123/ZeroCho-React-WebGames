@@ -18,14 +18,21 @@ const BullsAndCows = () => {
   const [result, setResult] = react.useState();
   const [value, setValue] = react.useState();
   const [answer, setAnswer] = react.useState(getNumbers());
-  const [tries, setTries] = react.useState([]);
+  const [tries, setTries] = react.useState(['Hello', 'World']);
 
-  // EventHandler
+  /**
+   * EventHandler function to handle submit event of the form
+   *
+   * @param {SubmitEvent} submitEvent HTML SubmitEvent from a from.
+   */
   const onFormSubmit = (submitEvent) => {
     submitEvent.preventDefault();
     // TODO
   };
 
+  /**
+   * EventHandler function to handle chaning values of input
+   */
   const onInputChange = () => {
     // TODO
   };
@@ -39,7 +46,7 @@ const BullsAndCows = () => {
       <div>Tries: {tries.length}</div>
       <ul>
         {tries.map((trial) => (
-          <Trial trial={trial} />
+          <Trial key={trial} trial={trial} />
         ))}
       </ul>
     </>

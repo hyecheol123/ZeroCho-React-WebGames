@@ -101,6 +101,8 @@ Lecture Link: https://www.youtube.com/playlist?list=PLcqDmjxt30RtqbStQqk-eYMK8N-
   - From callee, _props_ are set using HTML attribute syntax. (e.g. `<Trial value={value} index={index}/>`)
   - Inside the component, the `props` object contains all passed argument.
   - A parent component _passes_ props to the child components.
+- To comment out `JSX` codes, simply put block comments inside the curly bracket.
+  (e.g. `{/* Some Comments */}`)
 
 ## Project
 
