@@ -41,7 +41,6 @@ Lecture Link: https://www.youtube.com/playlist?list=PLcqDmjxt30RtqbStQqk-eYMK8N-
       - Only used for something that needs to be changed manually
       - Able to get function handler as a parameter which handles state change.
         The function handler may get parameter specifying the previous state.
-      - Everytime when `setState()` is called, `render()` is called.
         Meaning the components will re-rendered.
 - **ref** is uesd when we need to access DOM directly.
   - Similar to Vanilla JS's `querySelector()` or `getElementById()`.
@@ -103,6 +102,11 @@ Lecture Link: https://www.youtube.com/playlist?list=PLcqDmjxt30RtqbStQqk-eYMK8N-
   - A parent component _passes_ props to the child components.
 - To comment out `JSX` codes, simply put block comments inside the curly bracket.
   (e.g. `{/* Some Comments */}`)
+- React Elements are **immutable**.
+  - If you want to add an item into the array, need to create a new array.
+    - If not, React cannot detect what has been modified.
+- Everytime when `state` or `props` changed, Components are rendered again.
+  - May render other not updated components, causing performance issue.
 
 ## Project
 
