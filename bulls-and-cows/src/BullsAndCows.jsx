@@ -97,7 +97,11 @@ const BullsAndCows = () => {
     // TODO: Design
     <div className={styles.BullsAndCows}>
       <Greeting />
-      <Form onSubmitFunc={onFormSubmit} msg={msg} trialCount={tries.length + 1} />
+      <Form
+        onSubmitFunc={onFormSubmit}
+        msg={msg}
+        trialCount={tries.length + 1}
+      />
       <TrialsInfo tries={tries} />
       <NewGameButton newGameFunc={newGame} />
     </div>

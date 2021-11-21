@@ -59,7 +59,7 @@ const Form = ({ onSubmitFunc, msg, trialCount }) => {
   return (
     <div className={styles.Form}>
       <div className={styles.Input}>
-        <div>Tries ({(trialCount > 10) ? 'Game End' : `${trialCount}/10`}): </div>
+        <div>Tries ({trialCount > 10 ? 'Game End' : `${trialCount}/10`}): </div>
         <form onSubmit={onFormSubmit}>
           <input
             maxLength={4}
