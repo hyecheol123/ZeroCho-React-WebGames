@@ -7,14 +7,15 @@ import React from 'react';
  *
  * @param {object} props A properties that passed from the parent Component.
  * @param {function} props.onSubmitFunc Function that handles submitted user's input.
- * @param {boolean} props.isDisabled Indicating whether the input is disabled or not.
  * @param {string} props.msg Message from parent Component that will be displayed to user.
  * @return {React.ReactElement} a react element referring Form.
  */
-const Form = ({ onSubmitFunc, isDisabled, msg }) => {
+const Form = ({ onSubmitFunc, msg }) => {
   // State
   const [value, setValue] = React.useState('');
-  const [warningMsg, setWarningMsg] = React.useState(msg);
+  const [warningMsg, setWarningMsg] = React.useState(() => msg);
+  // When msg sent, form needs to be disabled (Game Set)
+  const isDisabled = (msg !== '');
 
   /**
    * EventHandler function to handle submit event of form
@@ -65,6 +66,7 @@ const Form = ({ onSubmitFunc, isDisabled, msg }) => {
         <button disabled={isDisabled}>Submit</button>
       </form>
       {warningMsg !== '' && <div>{warningMsg}</div>}
+      {msg !== '' && <div>{msg}</div>}
     </>
   );
 };

@@ -33,7 +33,6 @@ function getNumbers() {
  */
 const BullsAndCows = () => {
   // State
-  const [isDisabled, setIsDisabled] = React.useState(false);
   const [answer, setAnswer] = React.useState(() => getNumbers());
   const [tries, setTries] = React.useState([]);
   const [msg, setMsg] = React.useState('');
@@ -46,41 +45,33 @@ const BullsAndCows = () => {
   const onFormSubmit = React.useCallback(
     (value) => {
       // Check for answer
-      if (value === answer.join('')) {
-        // Correct Answer
-        setMsg('Homerun!!');
-        setTries((prevTries) => {
-          return [...prevTries, { try: value, result: 'Homerun!!' }];
-        });
-        // Disable Form
-        setIsDisabled(true);
-      } else {
-        // Wrong Answer
-        // Retrieve numbers from user's input
-        const userInputArray = value.split('').map((v) => parseInt(v));
-        // Temporal storage to count strikes and balls
-        let strike = 0;
-        let ball = 0;
+      // Wrong Answer
+      // Retrieve numbers from user's input
+      const userInputArray = value.split('').map((v) => parseInt(v));
+      // Temporal storage to count bulls and cows
+      let bulls = 0;
+      let cows = 0;
 
-        // Count Strikes and Balls
-        for (let i = 0; i < 4; i++) {
-          if (userInputArray[i] === answer[i]) {
-            strike += 1;
-          } else if (answer.includes(userInputArray[i])) {
-            ball += 1;
-          }
+      // Count Bulls and Cows
+      for (let i = 0; i < 4; i++) {
+        if (userInputArray[i] === answer[i]) {
+          bulls += 1;
+        } else if (answer.includes(userInputArray[i])) {
+          cows += 1;
         }
-        // Add trial
-        setTries((prevTries) => {
-          return [...prevTries, { try: value, result: `${strike}S ${ball}B` }];
-        });
+      }
+      // Add trial
+      setTries((prevTries) => {
+        return [...prevTries, { try: value, result: `${bulls} Bulls ${cows} Cows` }];
+      });
 
-        if (tries.length >= 9) {
-          // 10th trial
-          setMsg(`Out of change! Correct answer is ${answer.join('')}`);
-          // Disable Form
-          setIsDisabled(true);
-        }
+      // Message
+      if (bulls === 4) {
+        // User Win
+        setMsg('Correct!! You Win!!');
+      } else if (tries.length >= 9) {
+        // 10th trial
+        setMsg(`Game Over! Correct answer is ${answer.join('')}`);
       }
     },
     [answer, tries]
@@ -90,7 +81,6 @@ const BullsAndCows = () => {
    * Helper method to start a new game
    */
   const newGame = React.useCallback(() => {
-    setIsDisabled(false);
     setAnswer(getNumbers());
     setTries([]);
     setMsg('');
@@ -100,7 +90,7 @@ const BullsAndCows = () => {
     // TODO: Design
     <>
       <Greeting />
-      <Form onSubmitFunc={onFormSubmit} isDisabled={isDisabled} msg={msg} />
+      <Form onSubmitFunc={onFormSubmit} msg={msg} />
       <TrialsInfo tries={tries} />
       <NewGameButton newGameFunc={newGame} />
     </>
