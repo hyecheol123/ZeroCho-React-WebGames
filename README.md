@@ -107,6 +107,12 @@ Lecture Link: https://www.youtube.com/playlist?list=PLcqDmjxt30RtqbStQqk-eYMK8N-
     - If not, React cannot detect what has been modified.
 - Everytime when `state` or `props` changed, Components are rendered again.
   - May render other not updated components, causing performance issue.
+  - [**Component.shouldComponentUpdate()**](https://reactjs.org/docs/react-component.html#shouldcomponentupdate) can be used to hint React when it should re-render the component.
+  - [**PureComponent**](https://reactjs.org/docs/react-api.html#reactpurecomponent) also can be used to solve the problem, as it will shallowly compare states and props.
+    - May not detect changes inside an object and an array.
+      Need to make another object or array, rather than modifying the already existing one.
+  - For Functional Components (Hooks), Use [**React.memo()**](https://reactjs.org/docs/react-api.html#reactmemo).
+  - Rule of Thumb: If all children are memoized, the parent is recommended to be memoized.
 
 ## Project
 

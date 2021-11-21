@@ -5,7 +5,7 @@ import React from 'react';
  *
  * @param {object} props A properties that passed from the parent Component.
  * @param {object} props.trialInfo A trial's information passed by the parent Component.
- * @return {react.ReactElement} a react element referring Trial Component.
+ * @return {React.ReactElement} a react element referring Trial Component.
  */
 const Trial = ({ trialInfo }) => {
   return (
@@ -16,4 +16,4 @@ const Trial = ({ trialInfo }) => {
   );
 };
 
-export default Trial;
+export default React.memo(Trial);
