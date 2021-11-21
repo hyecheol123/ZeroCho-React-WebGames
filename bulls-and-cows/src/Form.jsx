@@ -9,11 +9,13 @@ import React from 'react';
  * @param {object} props A properties that passed from the parent Component.
  * @param {function} props.onSubmitFunc Function that handles submitted user's input.
  * @param {boolean} props.isDisabled Indicating whether the input is disabled or not.
+ * @param {string} props.msg Message from parent Component that will be displayed to user.
  * @return {React.ReactElement} a react element referring Form.
  */
-const Form = ({ onSubmitFunc, isDisabled }) => {
+const Form = ({ onSubmitFunc, isDisabled, msg }) => {
   // State
   const [value, setValue] = React.useState('');
+  const [warningMsg, setWarningMsg] = React.useState(msg);
 
   /**
    * EventHandler function to handle submit event of form
@@ -22,8 +24,25 @@ const Form = ({ onSubmitFunc, isDisabled }) => {
    */
   const onFormSubmit = (submitEvent) => {
     submitEvent.preventDefault();
-    onSubmitFunc(value);
-    setValue('');
+
+    // Check value
+    const userInputArray = value.split('').map((v) => parseInt(v));
+    if (userInputArray.length !== 4) {
+      // Length
+      setWarningMsg('Input should have four numbers');
+    } else if (userInputArray.filter((n) => isNaN(n)).length !== 0) {
+      // Only Number
+      setWarningMsg('Only numbers are allowed');
+    } else if (new Set(userInputArray).size !== userInputArray.length) {
+      // No Duplicate
+      setWarningMsg('Four numbers should be different');
+    } else {
+      // No Problem
+      // Forward value to parent
+      onSubmitFunc(value);
+      setValue('');
+      setWarningMsg('');
+    }
   };
 
   /**
@@ -46,6 +65,7 @@ const Form = ({ onSubmitFunc, isDisabled }) => {
         />
         <button disabled={isDisabled}>Submit</button>
       </form>
+      {warningMsg !== '' && <div>{warningMsg}</div>}
     </>
   );
 };

@@ -18,7 +18,7 @@ Used React Hooks to build application.
   - Ref: https://en.wikipedia.org/wiki/Bulls_and_Cows
   - **Bull**: Correct number & Correct position
   - **Cow**: Correct number & Incorrect position
-- TODO: Filter user's input
+- Filter user's input
 - TODO: Create Button to start new game
 - React Performance Optimization
   - Separate Components.

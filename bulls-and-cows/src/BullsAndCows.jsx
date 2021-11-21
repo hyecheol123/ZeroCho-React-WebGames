@@ -15,7 +15,10 @@ function getNumbers() {
   // Choose four different random number
   for (let i = 0; i < 4; i++) {
     // eslint-disable-next-line prettier/prettier
-    const chosen = candidate.splice(Math.floor(Math.random() * candidate.length), 1)[0];
+    const chosen = candidate.splice(
+      Math.floor(Math.random() * candidate.length),
+      1
+    )[0];
     array.push(chosen);
   }
 
@@ -29,10 +32,10 @@ function getNumbers() {
  */
 const BullsAndCows = () => {
   // State
-  const [result, setResult] = React.useState('');
   const [isDisabled, setIsDisabled] = React.useState(false);
   const [answer, setAnswer] = React.useState(() => getNumbers());
   const [tries, setTries] = React.useState([]);
+  const [msg, setMsg] = React.useState('');
 
   /**
    * Helper method of EventHandler handling submit event of the Form Component
@@ -44,7 +47,7 @@ const BullsAndCows = () => {
       // Check for answer
       if (value === answer.join('')) {
         // Correct Answer
-        setResult('Homerun!!');
+        setMsg('Homerun!!');
         setTries((prevTries) => {
           return [...prevTries, { try: value, result: 'Homerun!!' }];
         });
@@ -73,7 +76,7 @@ const BullsAndCows = () => {
 
         if (tries.length >= 9) {
           // 10th trial
-          setResult(`Out of change! Correct answer is ${answer.join('')}`);
+          setMsg(`Out of change! Correct answer is ${answer.join('')}`);
           // Disable Form
           setIsDisabled(true);
         }
@@ -86,7 +89,7 @@ const BullsAndCows = () => {
     // TODO: Design
     <>
       <Greeting />
-      <Form onSubmitFunc={onFormSubmit} isDisabled={isDisabled} />
+      <Form onSubmitFunc={onFormSubmit} isDisabled={isDisabled} msg={msg} />
       <TrialsInfo tries={tries} />
       {/* TODO: New Game Button */}
     </>
