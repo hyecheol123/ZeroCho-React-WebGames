@@ -2,11 +2,11 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  margin-bottom: 15px;
+  margin-bottom: 1rem;
 }
 
 .Title {
-  margin: 10px 0 15px 0;
+  margin: 0.66rem 0 1rem 0;
   text-align: center;
   font-size: 1.8rem;
 }
@@ -15,10 +15,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 10px 15px;
+  padding: 0.66rem 1rem;
   background-color: rgb(229, 226, 255);
   border: 2px solid rgb(144, 130, 235);
-  border-radius: 10px;
+  border-radius: 0.66rem;
   font-size: 0.9rem;
 }
 

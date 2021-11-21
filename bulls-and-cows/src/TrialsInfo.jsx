@@ -14,7 +14,6 @@ import Trial from './Trial';
 const TrialsInfo = ({ tries }) => {
   return (
     <>
-      <div>Tries: {tries.length}/10</div>
       <ul>
         {tries.map((trial, index) => (
           <Trial

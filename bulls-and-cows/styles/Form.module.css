@@ -1,0 +1,44 @@
+.Form {
+  display: flex;
+  flex-direction: column;
+}
+
+.Input {
+  display: flex;
+  align-items: baseline;
+  margin-bottom: 0.3rem;
+}
+
+.Input div {
+  font-weight: 700;
+  flex-grow: 0;
+  font-size: 1rem;
+}
+
+.Input form {
+  flex-grow: 1;
+  margin-left: 0.5rem;
+  display: flex;
+}
+
+.Input form input {
+  flex-grow: 1;
+  margin-right: 0.25rem;
+}
+
+.Input form button {
+  cursor: pointer;
+}
+
+.Msg {
+  flex-grow: 1;
+  width: 100%;
+  text-align: center;
+  height: 1.5rem;
+  line-height: 1.5rem;
+  font-size: 1rem;
+  background-color: rgb(250, 84, 46);
+  border-radius: 0.33rem;
+  color: white;
+  font-weight: 600;
+}

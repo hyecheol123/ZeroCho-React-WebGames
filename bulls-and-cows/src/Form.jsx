@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from '../styles/Form.module.css';
 
 // TODO: Design change
 
@@ -8,9 +9,10 @@ import React from 'react';
  * @param {object} props A properties that passed from the parent Component.
  * @param {function} props.onSubmitFunc Function that handles submitted user's input.
  * @param {string} props.msg Message from parent Component that will be displayed to user.
+ * @param {number} props.trialCount Indicates which trial user currently submitting.
  * @return {React.ReactElement} a react element referring Form.
  */
-const Form = ({ onSubmitFunc, msg }) => {
+const Form = ({ onSubmitFunc, msg, trialCount }) => {
   // State
   const [value, setValue] = React.useState('');
   const [warningMsg, setWarningMsg] = React.useState(() => msg);
@@ -55,19 +57,22 @@ const Form = ({ onSubmitFunc, msg }) => {
   }, []);
 
   return (
-    <>
-      <form onSubmit={onFormSubmit}>
-        <input
-          maxLength={4}
-          value={value}
-          onChange={onInputChange}
-          disabled={isDisabled}
-        />
-        <button disabled={isDisabled}>Submit</button>
-      </form>
-      {warningMsg !== '' && <div>{warningMsg}</div>}
-      {msg !== '' && <div>{msg}</div>}
-    </>
+    <div className={styles.Form}>
+      <div className={styles.Input}>
+        <div>Tries ({(trialCount > 10) ? 'Game End' : `${trialCount}/10`}): </div>
+        <form onSubmit={onFormSubmit}>
+          <input
+            maxLength={4}
+            value={value}
+            onChange={onInputChange}
+            disabled={isDisabled}
+          />
+          <button disabled={isDisabled}>Submit</button>
+        </form>
+      </div>
+      {warningMsg !== '' && <div className={styles.Msg}>{warningMsg}</div>}
+      {msg !== '' && <div className={styles.Msg}>{msg}</div>}
+    </div>
   );
 };
 
