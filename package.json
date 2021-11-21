@@ -18,8 +18,8 @@
     "build:9-times-table": "webpack --config ./9-times-table/webpack.prod.js --progress",
     "dev:bulls-and-cows": "webpack serve --mode development --open --hot --config ./bulls-and-cows/webpack.dev.js --progress",
     "build:bulls-and-cows": "webpack --config ./bulls-and-cows/webpack.prod.js --progress",
-    "lint": "prettier --check \"**/*.{js,jsx}\" && eslint \"**/*.{js,jsx}\"",
-    "lint:fix": "prettier --write \"**/*.{js,jsx}\" && eslint --fix \"**/*.{js,jsx}\""
+    "lint": "prettier --check \"**/*.{js,jsx,css}\" && eslint \"**/*.{js,jsx}\"",
+    "lint:fix": "prettier --write \"**/*.{js,jsx,css}\" && eslint --fix \"**/*.{js,jsx}\""
   },
   "dependencies": {
     "react": "^17.0.2",
