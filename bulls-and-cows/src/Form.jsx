@@ -1,13 +1,17 @@
 import React from 'react';
 
+// TODO: Design change
+// TODO: Warning
+
 /**
  * React Hooks Component for getting user's input.
  *
  * @param {object} props A properties that passed from the parent Component.
  * @param {function} props.onSubmitFunc Function that handles submitted user's input.
+ * @param {boolean} props.isDisabled Indicating whether the input is disabled or not.
  * @return {React.ReactElement} a react element referring Form.
  */
-const Form = ({ onSubmitFunc }) => {
+const Form = ({ onSubmitFunc, isDisabled }) => {
   // State
   const [value, setValue] = React.useState('');
 
@@ -34,7 +38,13 @@ const Form = ({ onSubmitFunc }) => {
   return (
     <>
       <form onSubmit={onFormSubmit}>
-        <input maxLength={4} value={value} onChange={onInputChange} />
+        <input
+          maxLength={4}
+          value={value}
+          onChange={onInputChange}
+          disabled={isDisabled}
+        />
+        <button disabled={isDisabled}>Submit</button>
       </form>
     </>
   );
