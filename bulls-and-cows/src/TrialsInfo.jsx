@@ -14,10 +14,10 @@ import Trial from './Trial';
 const TrialsInfo = ({ tries }) => {
   return (
     <>
-      <div>Tries: {tries.length}</div>
+      <div>Tries: {tries.length}/10</div>
       <ul>
         {tries.map((trial, index) => (
-          <Trial key={`${index} Trial`} trialInfo={trial} />
+          <Trial key={`${index + 1} Trial`} trialInfo={trial} trialKey={`${index} Trial`} />
         ))}
       </ul>
     </>

@@ -19,7 +19,7 @@ Used React Hooks to build application.
   - **Bull**: Correct number & Correct position
   - **Cow**: Correct number & Incorrect position
 - Filter user's input
-- TODO: Create Button to start new game
+- Create Button to start new game
 - React Performance Optimization
   - Separate Components.
   - Utilize `React.useCallback()` and `React.memo()`.

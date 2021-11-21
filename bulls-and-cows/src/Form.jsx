@@ -1,7 +1,6 @@
 import React from 'react';
 
 // TODO: Design change
-// TODO: Warning
 
 /**
  * React Hooks Component for getting user's input.

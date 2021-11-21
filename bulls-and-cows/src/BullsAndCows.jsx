@@ -2,6 +2,7 @@ import React from 'react';
 import Greeting from './Greeting';
 import Form from './Form';
 import TrialsInfo from './TrialsInfo';
+import NewGameButton from './NewGameButton';
 
 /**
  * Helper method to choose four different random numbers
@@ -85,13 +86,23 @@ const BullsAndCows = () => {
     [answer, tries]
   );
 
+  /**
+   * Helper method to start a new game
+   */
+  const newGame = React.useCallback(() => {
+    setIsDisabled(false);
+    setAnswer(getNumbers());
+    setTries([]);
+    setMsg('');
+  });
+
   return (
     // TODO: Design
     <>
       <Greeting />
       <Form onSubmitFunc={onFormSubmit} isDisabled={isDisabled} msg={msg} />
       <TrialsInfo tries={tries} />
-      {/* TODO: New Game Button */}
+      <NewGameButton newGameFunc={newGame} />
     </>
   );
 };
