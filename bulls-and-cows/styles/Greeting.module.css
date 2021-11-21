@@ -1,0 +1,32 @@
+.Greeting {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.Title {
+  margin: 10px 0 15px 0;
+  text-align: center;
+  font-size: 1.8rem;
+}
+
+.Instruction {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 15px;
+  background-color: rgb(229, 226, 255);
+  border: 2px solid rgb(144, 130, 235);
+  border-radius: 10px;
+  font-size: 0.9rem;
+}
+
+.InstructionText {
+  margin-top: 0.25rem;
+  text-align: center;
+}
+
+.AvoidWrap {
+  display: inline-block;
+}

@@ -1,8 +1,12 @@
 import React from 'react';
+// Modules
 import Greeting from './Greeting';
 import Form from './Form';
 import TrialsInfo from './TrialsInfo';
 import NewGameButton from './NewGameButton';
+// Styles
+import styles from '../styles/BullsAndCows.module.css';
+import '../styles/global.css';
 
 /**
  * Helper method to choose four different random numbers
@@ -91,12 +95,12 @@ const BullsAndCows = () => {
 
   return (
     // TODO: Design
-    <>
+    <div className={styles.BullsAndCows}>
       <Greeting />
       <Form onSubmitFunc={onFormSubmit} msg={msg} />
       <TrialsInfo tries={tries} />
       <NewGameButton newGameFunc={newGame} />
-    </>
+    </div>
   );
 };
 
