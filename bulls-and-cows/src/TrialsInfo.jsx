@@ -17,7 +17,11 @@ const TrialsInfo = ({ tries }) => {
       <div>Tries: {tries.length}/10</div>
       <ul>
         {tries.map((trial, index) => (
-          <Trial key={`${index + 1} Trial`} trialInfo={trial} trialKey={`${index} Trial`} />
+          <Trial
+            key={`${index + 1} Trial`}
+            trialInfo={trial}
+            trialKey={`${index + 1} Trial`}
+          />
         ))}
       </ul>
     </>

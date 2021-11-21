@@ -15,7 +15,7 @@ const Form = ({ onSubmitFunc, msg }) => {
   const [value, setValue] = React.useState('');
   const [warningMsg, setWarningMsg] = React.useState(() => msg);
   // When msg sent, form needs to be disabled (Game Set)
-  const isDisabled = (msg !== '');
+  const isDisabled = msg !== '';
 
   /**
    * EventHandler function to handle submit event of form

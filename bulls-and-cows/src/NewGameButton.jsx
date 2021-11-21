@@ -5,7 +5,7 @@ const NewGameButton = ({ newGameFunc }) => {
     <>
       <button onClick={newGameFunc}>New Game</button>
     </>
-  )
+  );
 };
 
 export default React.memo(NewGameButton);

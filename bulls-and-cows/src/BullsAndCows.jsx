@@ -62,7 +62,10 @@ const BullsAndCows = () => {
       }
       // Add trial
       setTries((prevTries) => {
-        return [...prevTries, { try: value, result: `${bulls} Bulls ${cows} Cows` }];
+        return [
+          ...prevTries,
+          { try: value, result: `${bulls} Bulls ${cows} Cows` },
+        ];
       });
 
       // Message
@@ -84,7 +87,7 @@ const BullsAndCows = () => {
     setAnswer(getNumbers());
     setTries([]);
     setMsg('');
-  });
+  }, []);
 
   return (
     // TODO: Design
