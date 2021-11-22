@@ -2,8 +2,6 @@ import React from 'react';
 import Trial from './Trial';
 import styles from '../styles/Trial.module.css';
 
-// TODO: Design Change
-
 /**
  * TrialsInfo React Component that displays user about previous trials.
  *

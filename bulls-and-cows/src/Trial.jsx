@@ -1,8 +1,6 @@
 import React from 'react';
 import styles from '../styles/Trial.module.css';
 
-// TODO: Design Change
-
 /**
  * Trial React Component that makes up the a list item showing the user's trials
  *

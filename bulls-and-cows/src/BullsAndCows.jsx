@@ -110,7 +110,6 @@ const BullsAndCows = () => {
   }, [resize]);
 
   return (
-    // TODO: Design
     <div className={styles.BullsAndCows} ref={viewport}>
       <Greeting />
       <Form

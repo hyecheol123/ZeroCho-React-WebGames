@@ -23,7 +23,7 @@ Used React Hooks to build application.
 - React Performance Optimization
   - Separate Components.
   - Utilize `React.useCallback()` and `React.memo()`.
-- TODO: Design for both mobile and desktop site
+- Design for both mobile and desktop site
 
 |      ![]()      |
 | :-------------: |

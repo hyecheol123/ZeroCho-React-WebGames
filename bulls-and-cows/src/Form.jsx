@@ -1,8 +1,6 @@
 import React from 'react';
 import styles from '../styles/Form.module.css';
 
-// TODO: Design change
-
 /**
  * React Hooks Component for getting user's input.
  *
