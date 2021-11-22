@@ -1,8 +1,8 @@
-{
+module.exports = {
   "presets": [
     "@babel/preset-react",
     [
-      "@babel/preset-env", 
+      "@babel/preset-env",
       {
         "debug": true,
         "targets": {
@@ -11,5 +11,7 @@
       }
     ]
   ],
-  "plugins": ["react-refresh/babel"]
+  "plugins": [
+    process.env.NODE_ENV !== 'production' && "react-refresh/babel"
+  ].filter(Boolean)
 }

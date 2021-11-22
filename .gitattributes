@@ -4,3 +4,4 @@
 
 *.jsx linguist-detectable=true
 webpack.*.js linguist-detectable=false
+babel.config.js linguist-detectable=false

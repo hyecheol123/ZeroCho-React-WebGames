@@ -27,7 +27,6 @@ module.exports = {
   },
   plugins: [
     new webpack.ProvidePlugin({ React: 'react' }),
-    new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({ template: './bulls-and-cows/public/index.html' }),
   ],
 };

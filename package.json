@@ -15,9 +15,9 @@
   "homepage": "https://github.com/hyecheol123/ZeroCho-React-WebGames#readme",
   "scripts": {
     "dev:9-times-table": "webpack serve --mode development --open --hot --config ./9-times-table/webpack.dev.js --progress",
-    "build:9-times-table": "webpack --config ./9-times-table/webpack.prod.js --progress",
+    "build:9-times-table": "cross-env NODE_ENV=production webpack --config ./9-times-table/webpack.prod.js --progress",
     "dev:bulls-and-cows": "webpack serve --mode development --open --hot --config ./bulls-and-cows/webpack.dev.js --progress",
-    "build:bulls-and-cows": "webpack --config ./bulls-and-cows/webpack.prod.js --progress",
+    "build:bulls-and-cows": "cross-env NODE_ENV=production webpack --config ./bulls-and-cows/webpack.prod.js --progress",
     "lint": "prettier --check \"**/*.{js,jsx,css}\" && eslint \"**/*.{js,jsx}\"",
     "lint:fix": "prettier --write \"**/*.{js,jsx,css}\" && eslint --fix \"**/*.{js,jsx}\""
   },
@@ -31,6 +31,7 @@
     "@babel/preset-react": "^7.16.0",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.1",
     "babel-loader": "^8.2.3",
+    "cross-env": "^7.0.3",
     "css-loader": "^6.5.1",
     "eslint": "^7.32.0",
     "eslint-config-google": "^0.14.0",
