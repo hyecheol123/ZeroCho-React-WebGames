@@ -13,6 +13,6 @@ module.exports = merge(common, {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new RefreshWebpackPlugin()
+    new RefreshWebpackPlugin(),
   ],
 });

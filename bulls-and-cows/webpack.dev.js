@@ -11,5 +11,8 @@ module.exports = merge(common, {
     hot: true,
     allowedHosts: ['.loca.lt'],
   },
-  plugins: [new webpack.HotModuleReplacementPlugin(), new RefreshWebpackPlugin()],
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new RefreshWebpackPlugin(),
+  ],
 });
