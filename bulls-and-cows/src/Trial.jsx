@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from '../styles/Trial.module.css';
 
 // TODO: Design Change
 
@@ -12,13 +13,16 @@ import React from 'react';
  */
 const Trial = ({ trialInfo, trialKey }) => {
   return (
-    <li>
-      <div>
+    <li className={styles.Trial}>
+      <div className={styles.TrialTitle}>{`Trial ${trialKey}`}</div>
+      <div className={styles.InputWrapper}>
         {trialInfo.try.split('').map((number, index) => (
-          <div key={`${trialKey}-${index}`}>{number}</div>
+          <div key={`${trialKey}-${index}`} className={styles.Input}>
+            {number}
+          </div>
         ))}
       </div>
-      <div>{trialInfo.result}</div>
+      <div className={styles.Result}>{trialInfo.result}</div>
     </li>
   );
 };

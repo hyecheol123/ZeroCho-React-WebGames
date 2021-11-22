@@ -1,5 +1,6 @@
 import React from 'react';
 import Trial from './Trial';
+import styles from '../styles/Trial.module.css';
 
 // TODO: Design Change
 
@@ -14,12 +15,12 @@ import Trial from './Trial';
 const TrialsInfo = ({ tries }) => {
   return (
     <>
-      <ul>
+      <ul className={styles.TrialList}>
         {tries.map((trial, index) => (
           <Trial
             key={`${index + 1} Trial`}
             trialInfo={trial}
-            trialKey={`${index + 1} Trial`}
+            trialKey={`${index + 1}`}
           />
         ))}
       </ul>

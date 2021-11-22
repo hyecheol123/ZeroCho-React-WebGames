@@ -1,0 +1,46 @@
+.TrialList {
+  margin: 0;
+  padding: 0;
+  max-width: 200px;
+  width: 50%;
+  list-style-type: none;
+  text-align: center;
+  margin: 0.6rem 0 0.6rem 0;
+  align-self: center;
+}
+
+.Trial {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0.3rem;
+  padding: 0.4rem 0 0.4rem 0;
+  background-color: rgb(229, 226, 255);
+  border: 2px solid rgb(144, 130, 235);
+  border-radius: 0.66rem;
+}
+
+.TrialTitle {
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 3px;
+}
+
+.InputWrapper {
+  display: flex;
+  align-self: center;
+}
+
+.Input {
+  width: 1.4rem;
+  height: 2rem;
+  line-height: 2rem;
+  font-size: 1.5rem;
+  margin: 0 3px 0 3px;
+  background-color: rgb(250, 215, 160);
+  border-radius: 5px;
+}
+
+.Result {
+  font-size: 0.9rem;
+  margin-top: 2px;
+}
