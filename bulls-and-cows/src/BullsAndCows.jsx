@@ -101,14 +101,13 @@ const BullsAndCows = () => {
     if (viewport.current) {
       viewport.current.style.height = `${window.innerHeight - 44}px`;
     }
-    console.log('reached');
-  })
+  }, []);
 
   // Resize Element
   React.useEffect(() => {
     resize();
     window.onresize = resize;
-  }, []);
+  }, [resize]);
 
   return (
     // TODO: Design
