@@ -11,14 +11,17 @@ import styles from '../styles/Trial.module.css';
  * @return {React.ReactElement} a react element referring TrialsInfo Component.
  */
 const TrialsInfo = ({ tries }) => {
+  const trialList = React.useRef(null);
+
   return (
     <>
-      <ul className={styles.TrialList}>
+      <ul className={styles.TrialList} ref={trialList}>
         {tries.map((trial, index) => (
           <Trial
             key={`${index + 1} Trial`}
             trialInfo={trial}
             trialKey={`${index + 1}`}
+            ref={trialList}
           />
         ))}
       </ul>
