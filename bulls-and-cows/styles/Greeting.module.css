@@ -22,6 +22,10 @@
   font-size: 0.9rem;
 }
 
+.Instruction div {
+  text-align: center;
+}
+
 .InstructionText {
   margin-top: 0.25rem;
   text-align: center;

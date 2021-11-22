@@ -40,6 +40,7 @@ const BullsAndCows = () => {
   const [answer, setAnswer] = React.useState(() => getNumbers());
   const [tries, setTries] = React.useState([]);
   const [msg, setMsg] = React.useState('');
+  const viewport = React.useRef(null);
 
   /**
    * Helper method of EventHandler handling submit event of the Form Component
@@ -93,9 +94,25 @@ const BullsAndCows = () => {
     setMsg('');
   }, []);
 
+  /**
+   * Helper method to resize element.
+   */
+  const resize = React.useCallback(() => {
+    if (viewport.current) {
+      viewport.current.style.height = `${window.innerHeight - 44}px`;
+    }
+    console.log('reached');
+  })
+
+  // Resize Element
+  React.useEffect(() => {
+    resize();
+    window.onresize = resize;
+  }, []);
+
   return (
     // TODO: Design
-    <div className={styles.BullsAndCows}>
+    <div className={styles.BullsAndCows} ref={viewport}>
       <Greeting />
       <Form
         onSubmitFunc={onFormSubmit}
