@@ -25,9 +25,9 @@ Used React Hooks to build application.
   - Utilize `React.useCallback()` and `React.memo()`.
 - Design for both mobile and desktop site
 
-|      ![]()                          |
-| :---------------------------------: |
-| _Demo Image of Bulls and Cows Game_ |
+|![](https://raw.githubusercontent.com/hyecheol123/ZeroCho-React-WebGames/main/img/bulls-and-cows/Bulls-and-Cows-Demo.png)|
+| :---------------------------------------------------------------------------------------------------------------------: |
+|                                           _Demo Image of Bulls and Cows Game_                                           |
 
 Code Link: https://github.com/hyecheol123/ZeroCho-React-WebGames/tree/main/bulls-and-cows  
 Demo Link: https://demo1.hcjang.com/bulls-and-cows
