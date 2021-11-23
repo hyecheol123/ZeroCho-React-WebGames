@@ -11,5 +11,5 @@ Used React Hooks to build application.
 | :---------------------------------------------------------------------------------------------------------------------: |
 |                                           _Demo Image of _                                           |
 
-Code Link:  
+Code Link: https://github.com/hyecheol123/ZeroCho-React-WebGames/tree/main/response-time  
 Demo Link:

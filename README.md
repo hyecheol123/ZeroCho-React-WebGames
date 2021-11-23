@@ -140,4 +140,4 @@ Detailed information can be found here: https://github.com/hyecheol123/ZeroCho-R
 Followed lecture contents to build a simple game to measure user's response time.  
 Used React Hooks to build application.
 
-Detailed information can be found here: [To Be Updated].
+Detailed information can be found here: https://github.com/hyecheol123/ZeroCho-React-WebGames/tree/main/response-time.
