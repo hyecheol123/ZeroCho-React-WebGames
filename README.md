@@ -54,6 +54,7 @@ Lecture Link: https://www.youtube.com/playlist?list=PLcqDmjxt30RtqbStQqk-eYMK8N-
       therefore, we need [**Babel**](https://babeljs.io/) to support JSX syntax.
       - To use `Babel`, `type` of script should be `text/babel`.
     - JavaScript code should be placed in curly bracket (e.g.: `<div>{... some js code ...}</div>`).
+    - `null` in `JSX` indicates no elements to return.
   - **React.Fragment** is used to group a list of chlidren without adding extra nodes to the DOM.
     - Help removing meaningless `<div>`.
     - Notation: `<React.Fragment> ... </React.Fragment>` or `<> ... </>`
@@ -71,6 +72,10 @@ Lecture Link: https://www.youtube.com/playlist?list=PLcqDmjxt30RtqbStQqk-eYMK8N-
   - **React.useState()** is used to define a state and its own `setState()` method.
   - **React.useRef()** is used to create new reference to the DOM object.
     - When access to the DOM Element, need to use `RefObject.current`.
+    - `ref` can also be used as a 'member variable' of a functional component.
+      - When chaning the content of ref, we ned to change `Ref.current`.
+      - When `Ref` changed, `render()` will not be called.
+        (The most important difference between `ref` and `state`.)
   - EventHandler function should be arrow function.
   - ```JavaScript
     // Example of using React Hooks
@@ -125,7 +130,14 @@ Detailed information can be found here: https://github.com/hyecheol123/ZeroCho-R
 
 ### Bulls and Cows (숫자야구) Game
 
-Followed lecture contents to build bulls _Bulls and Cows_ game.
+Followed lecture contents to build _Bulls and Cows_ game.
 Used React Hooks to build application.
 
 Detailed information can be found here: https://github.com/hyecheol123/ZeroCho-React-WebGames/tree/main/bulls-and-cows
+
+### Response Time (반응시간) Game
+
+Followed lecture contents to build a simple game to measure user's response time.  
+Used React Hooks to build application.
+
+Detailed information can be found here: [To Be Updated].
