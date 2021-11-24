@@ -9,7 +9,11 @@ import styles from '../styles/ResetButton.module.css';
  * @return {React.ReactElement} a react element referring ResetButton
  */
 const ResetButton = ({ resetFunc }) => {
-  return <button onClick={resetFunc} className={styles.Button}>Reset</button>;
+  return (
+    <button onClick={resetFunc} className={styles.Button}>
+      Reset
+    </button>
+  );
 };
 
 export default React.memo(ResetButton);
