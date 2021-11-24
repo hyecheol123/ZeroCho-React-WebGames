@@ -1,0 +1,12 @@
+.Button {
+  position: absolute;
+  bottom: 0.75rem;
+  left: 0.75rem;
+  background-color: slateblue;
+  border: 0;
+  border-radius: 0.66rem;
+  padding: 0.3rem 1rem;
+  color: white;
+  font-weight: 600;
+  font-size: 0.8rem;
+}
