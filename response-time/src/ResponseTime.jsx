@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from '../styles/ResponseTime.module.css';
 
 /**
  * React Hooks Component for ResponseTime game
@@ -48,15 +49,26 @@ const ResponseTime = ({ result, openModalFunc, addResultFunc }) => {
       setMsg('Click Anywere to Start');
       addResultFunc(endTime.current - startTime.current);
     }
-  }, [readyState, addResultFunc]);
+  }, [readyState, openModalFunc, addResultFunc]);
 
   return (
-    <div onClick={onClickScreen}>
+    <div
+      onClick={onClickScreen}
+      className={`${styles.ResponseTime} ${styles[readyState]}`}
+    >
       <span>{msg}</span>
-      <span>
-        {result.length !== 0 &&
-          `${Math.round(result.reduce((s, c) => s + c) / result.length)}ms`}
-      </span>
+      {readyState === 'idle' && (
+        <div className={styles.Result}>
+          <span>{`Number of Trials: ${result.length}`}</span>
+          {result.length !== 0 && (
+            <span>
+              {`Average Response Time: 
+                ${Math.round(result.reduce((s, c) => s + c) / result.length)}
+                ms`}
+            </span>
+          )}
+        </div>
+      )}
     </div>
   );
 };

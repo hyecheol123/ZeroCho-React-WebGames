@@ -2,6 +2,7 @@ import React from 'react';
 import ResponseTime from './ResponseTime';
 import FoulModal from './FoulModal';
 import ResetButton from './ResetButton';
+import '../styles/global.css';
 
 /**
  * React Hooks Component for ResponseTimeWrapper
@@ -24,14 +25,14 @@ const ResponseTimeWrapper = () => {
    */
   const closeModal = React.useCallback(() => {
     setIsFoul(false);
-  });
+  }, []);
 
   /**
    * Helper method to open alert modal
    */
   const openModal = React.useCallback(() => {
     setIsFoul(true);
-  })
+  }, []);
 
   /**
    * Helper method to reset game
@@ -41,7 +42,7 @@ const ResponseTimeWrapper = () => {
   }, []);
 
   return (
-    <div>
+    <>
       <ResponseTime
         result={result}
         openModalFunc={openModal}
@@ -49,7 +50,7 @@ const ResponseTimeWrapper = () => {
       />
       {isFoul && <FoulModal closeModalFunc={closeModal} />}
       <ResetButton resetFunc={resetGame} />
-    </div>
+    </>
   );
 };
 
