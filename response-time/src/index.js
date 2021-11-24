@@ -1,5 +1,5 @@
 import React from 'react';
 import ReactDom from 'react-dom';
-import ResponseTime from './ResponseTime';
+import ResponseTimeWrapper from './ResponseTimeWrapper';
 
-ReactDom.render(<ResponseTime />, document.getElementById('root'));
+ReactDom.render(<ResponseTimeWrapper />, document.getElementById('root'));
