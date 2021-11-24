@@ -13,9 +13,9 @@ Used React Hooks to build application.
   - Split Components
   - Use `React.useMemo()` and `React.useCallback()`.
 
-|![]()|
-| :---------------------------------------------------------------------------------------------------------------------: |
-|                                           _Demo Image of _                                           |
+|![](https://raw.githubusercontent.com/hyecheol123/ZeroCho-React-WebGames/main/img/response-time/Response-Time-Demo.png)|
+| :-------------------------------------------------------------------------------------------------------------------: |
+|                                          _Demo Image of Response Time Game_                                           |
 
 Code Link: https://github.com/hyecheol123/ZeroCho-React-WebGames/tree/main/response-time  
-Demo Link:
+Demo Link: https://demo1.hcjang.com/response-time  
