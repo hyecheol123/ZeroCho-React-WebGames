@@ -118,6 +118,19 @@ Lecture Link: https://www.youtube.com/playlist?list=PLcqDmjxt30RtqbStQqk-eYMK8N-
       Need to make another object or array, rather than modifying the already existing one.
   - For Functional Components (Hooks), Use [**React.memo()**](https://reactjs.org/docs/react-api.html#reactmemo).
   - Rule of Thumb: If all children are memoized, the parent is recommended to be memoized.
+- **React Lifecycle (Class Component)**
+  - When creating new Element: `constructor` -> `render()` -> ref -> `componentDidMount()`
+  - when updating the Element: (Initialized when `states` and `props` change) -> `shouldComponentUpdate()` -> `render()` -> `componentDidUpdate()`
+  - When removing the Element: `componentWillUnmount()`
+  - Image illustrating the sequence can be found here  
+    ![](https://raw.githubusercontent.com/hyecheol123/ZeroCho-React-WebGames/main/img/React-Lifecycle.jpeg)
+  - Focuses on the **Component**
+- **React Hooks Lifecycle**
+  - Focus on data
+  - `useEffect()` performs role of both `componentDidMount()` and `componentDidUpdate()`.
+  - When function returned from `useEffect()`, the returned function will run before the Element removed.
+    - Performs role of `componentWillUnmount()`.
+  
 
 ## Project
 
@@ -140,4 +153,11 @@ Detailed information can be found here: https://github.com/hyecheol123/ZeroCho-R
 Followed lecture contents to build a simple game to measure user's response time.  
 Used React Hooks to build application.
 
-Detailed information can be found here: https://github.com/hyecheol123/ZeroCho-React-WebGames/tree/main/response-time.
+Detailed information can be found here: https://github.com/hyecheol123/ZeroCho-React-WebGames/tree/main/response-time
+
+### Rock Paper Scissors (가위바위보) Game
+
+Followed lecture contents to build a _Rock Paper Scissors_ game.  
+Used React Class and React Lifecycle methods to build application.
+
+Detailed information can be found here: https://github.com/hyecheol123/ZeroCho-React-WebGames/tree/main/rock-paper-scissors
