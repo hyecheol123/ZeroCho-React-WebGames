@@ -34,7 +34,7 @@ const ResponseTime = ({ result, openModalFunc, addResultFunc }) => {
 
       // Get ready
       setReadyState('ready');
-      setMsg('Click when screen becomes green.');
+      setMsg('Click after screen becomes green');
     } else if (readyState === 'ready') {
       // Click too fast
       clearTimeout(timeout.current);
@@ -56,7 +56,7 @@ const ResponseTime = ({ result, openModalFunc, addResultFunc }) => {
       onClick={onClickScreen}
       className={`${styles.ResponseTime} ${styles[readyState]}`}
     >
-      <span>{msg}</span>
+      <span className={styles.Msg}>{msg}</span>
       {readyState === 'idle' && (
         <div className={styles.Result}>
           <span>{`Number of Trials: ${result.length}`}</span>
