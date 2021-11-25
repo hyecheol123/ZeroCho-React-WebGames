@@ -2,6 +2,7 @@ import React from 'react';
 import RockImg from '../assets/Rock.svg';
 import PaperImg from '../assets/Paper.svg';
 import ScissorsImg from '../assets/Scissors.svg';
+import ComputerChoiceImage from './ComputerChoiceImage';
 
 /**
  * Helper method to detect computer's choice
@@ -46,53 +47,14 @@ class RockPaperScissors extends React.PureComponent {
     // States in the React.Component
     this.state = {
       result: '',
-      imgUrl: RockImg,
       score: 0,
     };
 
-    // Class variable to store interval which switches computer's choice
-    this.interval = null;
+    // Refs pointing other Elements
+    this.computerChoiceImageElem = React.createRef();
 
     // Bind function
     this.onButtonClick = this.onButtonClick.bind(this);
-    this.changeHand = this.changeHand.bind(this);
-  }
-
-  /**
-   * Helper method to change computer's choice
-   */
-  changeHand() {
-    if (this.state.imgUrl === RockImg) {
-      this.setState({
-        imgUrl: PaperImg,
-      });
-    } else if (this.state.imgUrl === PaperImg) {
-      this.setState({
-        imgUrl: ScissorsImg,
-      });
-    } else {
-      this.setState({
-        imgUrl: RockImg,
-      });
-    }
-  }
-
-  /**
-   * After Component first rendered, Usually call async operations
-   *
-   * Start switching computer's options and images
-   */
-  componentDidMount() {
-    this.interval = setInterval(this.changeHand, 100);
-  }
-
-  /**
-   * Before Component remove, Usually clean up async operations
-   *
-   * Clear the interval set previously
-   */
-  componentWillUnmount() {
-    clearInterval(this.interval);
   }
 
   /**
@@ -106,12 +68,15 @@ class RockPaperScissors extends React.PureComponent {
   onButtonClick(choice) {
     return () => {
       // Stop chaning computer's choice
-      clearInterval(this.interval);
+      clearInterval(this.computerChoiceImageElem.current.interval);
       // TODO: Disable buttons
 
       // Find winner and Calculate score
       const myValue = rpsValue[choice];
-      const computerValue = rpsValue[computerChoice(this.state.imgUrl)];
+      const computerValue =
+        rpsValue[
+          computerChoice(this.computerChoiceImageElem.current.state.imgUrl)
+        ];
       const diff = myValue - computerValue;
       if (diff === 0) {
         this.setState({
@@ -136,7 +101,10 @@ class RockPaperScissors extends React.PureComponent {
 
       // Restart changing computer's choice after 1 second
       setTimeout(() => {
-        this.interval = setInterval(this.changeHand, 100);
+        this.computerChoiceImageElem.current.interval = setInterval(
+          this.computerChoiceImageElem.current.changeHand,
+          100
+        );
         // TODO: Enable buttons
       }, 2000);
     };
@@ -150,9 +118,7 @@ class RockPaperScissors extends React.PureComponent {
   render() {
     return (
       <>
-        <div>
-          <img src={this.state.imgUrl} alt="Rock Paper Scissors"></img>
-        </div>
+        <ComputerChoiceImage ref={this.computerChoiceImageElem} />
         <div>
           <button onClick={this.onButtonClick('rock')}>Rock</button>
           <button onClick={this.onButtonClick('paper')}>Paper</button>
