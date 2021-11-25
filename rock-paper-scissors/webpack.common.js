@@ -24,7 +24,7 @@ module.exports = {
         use: ['style-loader', 'css-loader'],
       },
       {
-        test: /\.(png|jpg|gif|jpeg)$/,
+        test: /\.(png|jpg|gif|jpeg|svg)$/,
         type: 'asset',
         parser: {
           dataUrlCondition: {
@@ -32,8 +32,8 @@ module.exports = {
           },
         },
         generator: {
-          filename: 'image/[hash][ext]'
-        }
+          filename: 'image/[hash][ext]',
+        },
       },
     ],
   },
