@@ -130,6 +130,9 @@ Lecture Link: https://www.youtube.com/playlist?list=PLcqDmjxt30RtqbStQqk-eYMK8N-
   - `useEffect()` performs role of both `componentDidMount()` and `componentDidUpdate()`.
   - When function returned from `useEffect()`, the returned function will run before the Element removed.
     - Performs role of `componentWillUnmount()`.
+- **High Order Function (HOF)**
+  - Return function as a result, or get function as parameters
+  - In React, it is used to call EventHandler function with parameter.
   
 
 ## Project
