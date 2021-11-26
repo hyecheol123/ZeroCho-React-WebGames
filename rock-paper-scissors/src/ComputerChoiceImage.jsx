@@ -69,7 +69,7 @@ class ComputerChoiceImage extends React.PureComponent {
   /**
    * Render Component
    *
-   * @return {React.ReactElement} React Element
+   * @return {React.ReactElement} React Element representing ComputerChoiceImage
    */
   render() {
     return (

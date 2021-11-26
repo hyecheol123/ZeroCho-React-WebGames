@@ -3,6 +3,7 @@ import RockImg from '../assets/Rock.svg';
 import PaperImg from '../assets/Paper.svg';
 import ScissorsImg from '../assets/Scissors.svg';
 import ComputerChoiceImage from './ComputerChoiceImage';
+import UserChoiceButton from './UserChoiceButton';
 
 /**
  * Helper method to detect computer's choice
@@ -46,6 +47,7 @@ class RockPaperScissors extends React.PureComponent {
 
     // States in the React.Component
     this.state = {
+      buttonDisabled: false,
       result: '',
       score: 0,
     };
@@ -69,7 +71,8 @@ class RockPaperScissors extends React.PureComponent {
     return () => {
       // Stop chaning computer's choice
       clearInterval(this.computerChoiceImageElem.current.interval);
-      // TODO: Disable buttons
+      // Disable buttons
+      this.setState({ buttonDisabled: true });
 
       // Find winner and Calculate score
       const myValue = rpsValue[choice];
@@ -105,7 +108,8 @@ class RockPaperScissors extends React.PureComponent {
           this.computerChoiceImageElem.current.changeHand,
           100
         );
-        // TODO: Enable buttons
+        // Enable buttons
+        this.setState({ buttonDisabled: false });
       }, 2000);
     };
   }
@@ -113,19 +117,18 @@ class RockPaperScissors extends React.PureComponent {
   /**
    * Render Component
    *
-   * @return {React.ReactElement} React Element
+   * @return {React.ReactElement} React Element representing RockPaperScissors
    */
   render() {
     return (
       <>
         <ComputerChoiceImage ref={this.computerChoiceImageElem} />
-        <div>
-          <button onClick={this.onButtonClick('rock')}>Rock</button>
-          <button onClick={this.onButtonClick('paper')}>Paper</button>
-          <button onClick={this.onButtonClick('scissors')}>Scissors</button>
-        </div>
-        <div>{this.state.result}</div>
-        <div>{this.state.score}</div>
+        <UserChoiceButton
+          buttonDisabled={this.state.buttonDisabled}
+          result={this.state.result}
+          onButtonClick={this.onButtonClick}
+        />
+        <div>{`Score: ${this.state.score}`}</div>
       </>
     );
   }
