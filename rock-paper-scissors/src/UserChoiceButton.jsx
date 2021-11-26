@@ -1,4 +1,11 @@
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faHandRock,
+  faHandPaper,
+  faHandScissors,
+} from '@fortawesome/free-regular-svg-icons';
+import styles from '../styles/UserChoiceButton.module.css';
 
 /**
  * React Component for UserChoiceButton
@@ -22,26 +29,31 @@ class UserChoiceButton extends React.PureComponent {
     return (
       <>
         {this.props.buttonDisabled ? (
-          <div>{this.props.result}</div>
+          <div className={styles.Wrapper}>
+            <div className={styles.Result}>{this.props.result}</div>
+          </div>
         ) : (
-          <div>
+          <div className={styles.Wrapper}>
             <button
               disabled={this.props.buttonDisabled}
               onClick={this.props.onButtonClick('rock')}
+              className={`${styles.BtnClass} ${styles.Rock}`}
             >
-              Rock
+              <FontAwesomeIcon icon={faHandRock} />
             </button>
             <button
               disabled={this.props.buttonDisabled}
               onClick={this.props.onButtonClick('paper')}
+              className={`${styles.BtnClass} ${styles.Paper}`}
             >
-              Paper
+              <FontAwesomeIcon icon={faHandPaper} />
             </button>
             <button
               disabled={this.props.buttonDisabled}
               onClick={this.props.onButtonClick('scissors')}
+              className={`${styles.BtnClass} ${styles.Scissors}`}
             >
-              Scissors
+              <FontAwesomeIcon icon={faHandScissors} />
             </button>
           </div>
         )}

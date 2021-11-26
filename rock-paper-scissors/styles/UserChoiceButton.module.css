@@ -1,0 +1,44 @@
+.Wrapper {
+  flex-grow: 0;
+  flex-shrink: 0;
+  height: 5rem;
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  width: 100%;
+}
+
+.BtnClass {
+  font-size: 4rem;
+  max-width: 6rem;
+  border: 0;
+  border-radius: 0.66rem;
+  padding: 0.3rem 1rem;
+  margin: 0 1rem;
+}
+
+.Rock {
+  background-color: lightcoral
+}
+
+.Paper {
+  background-color: lightblue
+}
+
+.Scissors {
+  background-color: lightgreen
+}
+
+.Result {
+  width: 22rem;
+  padding: 0.3rem 1rem;
+  background-color: rgb(229, 226, 255);
+  border: 2px solid rgb(144, 130, 235);
+  border-radius: 0.66rem;
+  font-size: 3rem;
+  line-height: 4rem;
+  text-align: center;
+  font-weight: 700;
+}

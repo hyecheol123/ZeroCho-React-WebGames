@@ -4,6 +4,8 @@ import PaperImg from '../assets/Paper.svg';
 import ScissorsImg from '../assets/Scissors.svg';
 import ComputerChoiceImage from './ComputerChoiceImage';
 import UserChoiceButton from './UserChoiceButton';
+import styles from '../styles/RockPaperScissors.module.css';
+import '../styles/global.css';
 
 /**
  * Helper method to detect computer's choice
@@ -78,7 +80,7 @@ class RockPaperScissors extends React.PureComponent {
       const myValue = rpsValue[choice];
       const computerValue =
         rpsValue[
-          computerChoice(this.computerChoiceImageElem.current.state.imgUrl)
+        computerChoice(this.computerChoiceImageElem.current.state.imgUrl)
         ];
       const diff = myValue - computerValue;
       if (diff === 0) {
@@ -121,15 +123,15 @@ class RockPaperScissors extends React.PureComponent {
    */
   render() {
     return (
-      <>
+      <div class={styles.Wrapper}>
         <ComputerChoiceImage ref={this.computerChoiceImageElem} />
         <UserChoiceButton
           buttonDisabled={this.state.buttonDisabled}
           result={this.state.result}
           onButtonClick={this.onButtonClick}
         />
-        <div>{`Score: ${this.state.score}`}</div>
-      </>
+        <div class={styles.Score}>{`Score: ${this.state.score}`}</div>
+      </div>
     );
   }
 }

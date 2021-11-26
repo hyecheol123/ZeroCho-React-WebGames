@@ -2,6 +2,7 @@ import React from 'react';
 import RockImg from '../assets/Rock.svg';
 import PaperImg from '../assets/Paper.svg';
 import ScissorsImg from '../assets/Scissors.svg';
+import styles from '../styles/ComputerChoiceImage.module.css';
 
 /**
  * React Component of ComputerChoiceImage
@@ -73,7 +74,7 @@ class ComputerChoiceImage extends React.PureComponent {
    */
   render() {
     return (
-      <div>
+      <div className={styles.ImageWrapper}>
         <img src={this.state.imgUrl} alt="Rock Paper Scissors"></img>
       </div>
     );
