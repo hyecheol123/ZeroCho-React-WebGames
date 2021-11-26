@@ -80,7 +80,7 @@ class RockPaperScissors extends React.PureComponent {
       const myValue = rpsValue[choice];
       const computerValue =
         rpsValue[
-        computerChoice(this.computerChoiceImageElem.current.state.imgUrl)
+          computerChoice(this.computerChoiceImageElem.current.state.imgUrl)
         ];
       const diff = myValue - computerValue;
       if (diff === 0) {

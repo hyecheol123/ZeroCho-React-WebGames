@@ -20,15 +20,15 @@
 }
 
 .Rock {
-  background-color: lightcoral
+  background-color: lightcoral;
 }
 
 .Paper {
-  background-color: lightblue
+  background-color: lightblue;
 }
 
 .Scissors {
-  background-color: lightgreen
+  background-color: lightgreen;
 }
 
 .Result {

@@ -19,7 +19,8 @@
   color: white;
 }
 
-@media screen and (max-width: 400px), screen and (orientation: landscape) and (max-height: 400px) {
+@media screen and (max-width: 400px),
+  screen and (orientation: landscape) and (max-height: 400px) {
   .Score {
     font-size: 1.33rem;
     border-radius: 0.88rem;
