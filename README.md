@@ -158,6 +158,41 @@ Lecture Link: https://www.youtube.com/playlist?list=PLcqDmjxt30RtqbStQqk-eYMK8N-
   - It also stores all the variables that _used_ in the function.
   - When we pass function as props to the child Component, it is required to wrap the function with `React.useCalback()` to prevent unnecessary re-render caused by props change.
     - Newly created function is _different_ function with previous one.
+- [**React.useReducer()**](https://reactjs.org/docs/hooks-reference.html#usereducer) and **React.useContext()** can substitute `Redux` for simple applications.
+  For complicated applications, to use asyncronous calls efficiently, it is better to use `Redux`.
+
+  - `React.useReducer()` is used to _reduce the number of States used in the application_.
+
+    - When we have tons of States, it is hard to management all pairs of States and setState functions.
+    - ```JavaScript
+      const [state, dispatch] = useReducer(reducer, initialArg, init);
+      ```
+
+      - `dispatch` get an `action` object with `type` property and states to update.
+        `dispatch` translate the `action` to change the state.
+      - `reducer` is a function to change States.
+
+        - ```JavaScript
+          const reducer = (state, action) => {
+            switch(action.type) {
+              case 'SET_WINNER':
+                return {
+                  ...state, // Shallow copy existing object
+                  winner: action.winner, // Change the property.
+                };
+            }
+          };
+          ```
+          - Should not change the state directly like `state.winner = action.winner`.
+            Always need to return a new state.
+        - Everytime when we call `dispatch` the `reducer` function is called.
+        - It is where the codes to change the state based on the `type` of `action` are written.
+
+      - `initialArg` gets object of initial states.
+      - `init` function is used for lazy initialization.
+        - The intiaial state will be set to the return value of `init(initialArg)` function.
+        - By using `init`, developers can detach the logic to calculate the intial state outside of reducer.
+        - Helps resetting the states later.
 
 ## Project
 
