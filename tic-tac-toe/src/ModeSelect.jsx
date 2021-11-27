@@ -10,7 +10,12 @@ import React from 'react';
  * @return {React.ReactElement} a react element referring ModeSelect
  */
 const ModeSelect = ({ select1PMode, select2PMode }) => {
-  return <></>;
+  return (
+    <>
+      <button onClick={select1PMode}>1P</button>
+      <button onClick={select2PMode}>2P</button>
+    </>
+  );
 };
 
 export default ModeSelect;

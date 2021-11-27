@@ -1,4 +1,6 @@
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHome } from '@fortawesome/free-solid-svg-icons';
 
 /**
  * React Functional Component for TwoPlayerMode
@@ -10,7 +12,13 @@ import React from 'react';
  * @return {React.ReactElement} a react element referring TwoPlayerMode
  */
 const TwoPlayerMode = ({ resetMode }) => {
-  return <></>;
+  return (
+    <>
+      <button onClick={resetMode}>
+        <FontAwesomeIcon icon={faHome} />
+      </button>
+    </>
+  );
 };
 
 export default TwoPlayerMode;
