@@ -170,6 +170,7 @@ Lecture Link: https://www.youtube.com/playlist?list=PLcqDmjxt30RtqbStQqk-eYMK8N-
 
       - `dispatch` get an `action` object with `type` property and states to update.
         `dispatch` translate the `action` to change the state.
+        - Like `setState()`, `dispatch()` is an asyncronous function.
       - `reducer` is a function to change States.
 
         - ```JavaScript
@@ -223,3 +224,10 @@ Followed lecture contents to build a _Rock Paper Scissors_ game.
 Used React Class and React Lifecycle methods to build application.
 
 Detailed information can be found here: https://github.com/hyecheol123/ZeroCho-React-WebGames/tree/main/rock-paper-scissors
+
+### Tic-Tac-Toe Game
+
+Followed lecture contents to build a _Tic Tac Toe_ game.  
+Used `reducer` and React Hooks (Functional Component) to build application.
+
+Detailed information can be found here: https://github.com/hyecheol123/ZeroCho-React-WebGames/tree/main/tic-tac-toe
