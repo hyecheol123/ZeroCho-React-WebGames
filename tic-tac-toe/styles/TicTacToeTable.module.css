@@ -1,0 +1,34 @@
+.Table {
+  display: grid;
+  grid-template: repeat(3, 1fr) / repeat(3, 1fr);
+  grid-gap: 0.2rem;
+  gap: 0.2rem;
+  background-color: lightgray;
+}
+
+.TableCell {
+  text-align: center;
+  background-color: white;
+}
+
+@media (orientation: landscape) {
+  .Table {
+    height: 73vh;
+    width: 73vh;
+  }
+
+  .TableCell {
+    font-size: calc(70vh / 3 - 1rem);
+  }
+}
+
+@media (orientation: portrait) {
+  .Table {
+    height: 80vw;
+    width: 80vw;
+  }
+
+  .TableCell {
+    font-size: calc(80vw / 3 - 1rem);
+  }
+}
