@@ -76,6 +76,7 @@ Lecture Link: https://www.youtube.com/playlist?list=PLcqDmjxt30RtqbStQqk-eYMK8N-
       - When chaning the content of ref, we ned to change `Ref.current`.
       - When `Ref` changed, `render()` will not be called.
         (The most important difference between `ref` and `state`.)
+      - It memorizes the value.
   - EventHandler function should be arrow function.
   - ```JavaScript
     // Example of using React Hooks
@@ -96,6 +97,8 @@ Lecture Link: https://www.youtube.com/playlist?list=PLcqDmjxt30RtqbStQqk-eYMK8N-
     }
     ```
   - Note that once state changed, all codes in the function (Hooks) re-run (but in optimized way).
+  - **The order of Hooks matter!!**
+    - Should not be placed in the _conditional statement_, _loop_, and _function_.
 - Each child in a list needs to have a unique **key**, in order to identify which element to access (change, modify, delete).
   - Can use index as a key, but it is an anti-pattern.
     It may break the application and cause to display wrong data.
@@ -136,7 +139,13 @@ Lecture Link: https://www.youtube.com/playlist?list=PLcqDmjxt30RtqbStQqk-eYMK8N-
 - **High Order Function (HOF)**
   - Return function as a result, or get function as parameters
   - In React, it is used to call EventHandler function with parameter.
-  
+- [**React.useMemo()**](https://reactjs.org/docs/hooks-reference.html#usememo) caches calculated result and prevent unnecessary function calls.
+  - It is used to memorize complicated result of function.
+- [**React.useCallback()**](https://reactjs.org/docs/hooks-reference.html#usecallback) memorizes the function itself.
+  - It prevents same function to be created multiple time when Components re-render.
+  - It also stores all the variables that _used_ in the function.
+  - When we pass function as props to the child Component, it is required to wrap the function with `React.useCalback()` to prevent unnecessary re-render caused by props change.
+    - Newly created function is _different_ function with previous one.
 
 ## Project
 
