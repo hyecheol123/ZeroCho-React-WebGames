@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from '../styles/ModeSelect.module.css';
 
 /**
  * React Functional Component for ModeSelect
@@ -11,10 +12,17 @@ import React from 'react';
  */
 const ModeSelect = ({ select1PMode, select2PMode }) => {
   return (
-    <>
-      <button onClick={select1PMode}>1P</button>
-      <button onClick={select2PMode}>2P</button>
-    </>
+    <div className={styles.Wrapper}>
+      <div className={styles.Title}>Select Game Mode</div>
+      <div className={styles.BtnWrapper}>
+        <button className={styles.Button} onClick={select1PMode}>
+          1P
+        </button>
+        <button className={styles.Button} onClick={select2PMode}>
+          2P
+        </button>
+      </div>
+    </div>
   );
 };
 

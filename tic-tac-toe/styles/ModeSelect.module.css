@@ -1,0 +1,25 @@
+.Wrapper {
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  transform: translate(50%, -50%);
+}
+
+.Title {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  font-weight: 700;
+}
+
+.BtnWrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 1.5rem;
+}
+
+.Button {
+  font-size: 3rem;
+  border-radius: 1rem;
+  padding: 1rem 2.5rem;
+}

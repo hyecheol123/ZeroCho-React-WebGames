@@ -2,6 +2,7 @@ import React from 'react';
 import ModeSelect from './ModeSelect';
 import SinglePlayerMode from './SinglePlayerMode';
 import TwoPlayerMode from './TwoPlayerMode';
+import '../styles/global.css';
 
 /**
  * React Functional Component for TicTacToeWrapper
