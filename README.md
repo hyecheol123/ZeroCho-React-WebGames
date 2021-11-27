@@ -132,6 +132,18 @@ Lecture Link: https://www.youtube.com/playlist?list=PLcqDmjxt30RtqbStQqk-eYMK8N-
 - **React Hooks Lifecycle**
   - Focus on data
   - `useEffect()` performs role of both `componentDidMount()` and `componentDidUpdate()`.
+    - If we want to only run codes inside `useEffect()` only when update, use following pattern.
+      - ```JavaScript
+        const mounted = useRef(false);
+        useEffect(() => {
+          if (!mounted.current) {
+            // When mounted
+            mounted.current = true;
+          } else {
+            // Something to do on update (e.g. Ajax)
+          }
+        }, [<Changing-Value>]);
+        ```
   - When function returned from `useEffect()`, the returned function will run before the Element removed.
     - Performs role of `componentWillUnmount()`.
   - `useEffect()` should get an array containing changing states as a second parameter.
