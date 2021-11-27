@@ -22,6 +22,8 @@
     "build:response-time": "cross-env NODE_ENV=production webpack --config ./response-time/webpack.prod.js --progress",
     "dev:rock-paper-scissors": "webpack serve --mode development --open --hot --config ./rock-paper-scissors/webpack.dev.js --progress",
     "build:rock-paper-scissors": "cross-env NODE_ENV=production webpack --config ./rock-paper-scissors/webpack.prod.js --progress",
+    "dev:tic-tac-toe": "webpack serve --mode development --open --hot --config ./tic-tac-toe/webpack.dev.js --progress",
+    "build:tic-tac-toe": "cross-env NODE_ENV=production webpack --config ./tic-tac-toe/webpack.prod.js --progress",
     "lint": "prettier --check \"**/*.{js,jsx,css}\" && eslint \"**/*.{js,jsx}\"",
     "lint:fix": "prettier --write \"**/*.{js,jsx,css}\" && eslint --fix \"**/*.{js,jsx}\""
   },
