@@ -31,21 +31,28 @@ class ComputerChoiceImage extends React.PureComponent {
   }
 
   /**
-   * Helper method to change computer's choice
+   * Helper method to randomly change computer's choice
    */
   changeHand() {
+    const rndIdx = Math.floor(Math.random() * 2);
     if (this.state.imgUrl === RockImg) {
-      this.setState({
-        imgUrl: PaperImg,
-      });
+      if (rndIdx === 0) {
+        this.setState({ imgUrl: PaperImg });
+      } else {
+        this.setState({ imgUrl: ScissorsImg });
+      }
     } else if (this.state.imgUrl === PaperImg) {
-      this.setState({
-        imgUrl: ScissorsImg,
-      });
+      if (rndIdx === 0) {
+        this.setState({ imgUrl: ScissorsImg });
+      } else {
+        this.setState({ imgUrl: RockImg });
+      }
     } else {
-      this.setState({
-        imgUrl: RockImg,
-      });
+      if (rndIdx === 0) {
+        this.setState({ imgUrl: RockImg });
+      } else {
+        this.setState({ imgUrl: PaperImg });
+      }
     }
   }
 
