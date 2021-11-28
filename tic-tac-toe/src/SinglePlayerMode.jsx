@@ -1,6 +1,6 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHome } from '@fortawesome/free-solid-svg-icons';
+// Temporal Message
+import styles from '../styles/ResultModal.module.css';
 
 /**
  * React Functional Component for SinglePlayerMode
@@ -12,11 +12,21 @@ import { faHome } from '@fortawesome/free-solid-svg-icons';
  * @return {React.ReactElement} a react element referring SinglePlayerMode
  */
 const SinglePlayerMode = ({ resetMode }) => {
+  // Temp Message: Not Yet Implemented
+  // TODO: Implement
   return (
     <>
-      <button onClick={resetMode}>
-        <FontAwesomeIcon icon={faHome} />
-      </button>
+      <div className={styles.ModalOverlay}>
+        <div className={styles.Modal}>
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
+            <span style={{ fontSize: '16px', margin: '1px' }}>1P Mode</span>
+            <span style={{ fontSize: '16px', margin: '1px' }}>
+              Not Yet Implemented
+            </span>
+          </div>
+          <button onClick={resetMode}>Go Back To Home</button>
+        </div>
+      </div>
     </>
   );
 };
