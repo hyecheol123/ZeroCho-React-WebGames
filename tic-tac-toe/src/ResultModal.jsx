@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from '../styles/ResultModal.module.css';
 
 /**
  * React Component to show result of game
@@ -10,8 +11,8 @@ import React from 'react';
  */
 const ResultModal = ({ result, resetGameFunc }) => {
   return (
-    <div>
-      <div>
+    <div className={styles.ModalOverlay}>
+      <div className={styles.Modal}>
         <span>{result}</span>
         <button onClick={resetGameFunc}>Start New Game</button>
       </div>

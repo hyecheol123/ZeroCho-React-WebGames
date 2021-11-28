@@ -5,6 +5,7 @@ import BackToHomeButton from './BackToHomeButton';
 import TicTacToeTable from './TicTacToeTable';
 import TicTacToeTurnButton from './TicTacToeTurnButton';
 import ResultModal from './ResultModal';
+import styles from '../styles/GamePlay.module.css';
 
 /**
  * React Functional Component for TwoPlayerMode
@@ -36,8 +37,10 @@ const TwoPlayerMode = ({ resetMode }) => {
   }, []);
 
   return (
-    <div>
-      <BackToHomeButton resetModeFunc={resetMode} />
+    <div className={styles.Game}>
+      <div className={styles.Header}>
+        <BackToHomeButton resetModeFunc={resetMode} />
+      </div>
       <TicTacToeTable
         tableData={state.tableData}
         isDisabled={state.result !== ''}

@@ -1,0 +1,16 @@
+.Button {
+  width: 25%;
+  padding: 0.2rem 1rem;
+}
+
+@media (orientation: landscape) {
+  .Button {
+    font-size: 4vh;
+  }
+}
+
+@media (orientation: portrait) {
+  .Button {
+    font-size: 4.5vw;
+  }
+}

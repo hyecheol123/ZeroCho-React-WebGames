@@ -4,9 +4,17 @@
   column-gap: 1.5rem;
 }
 
+.Button {
+  border-radius: 0.75rem;
+}
+
 @media (orientation: landscape) {
   .BtnWrapper {
-    width: 73vh;
+    width: 70vh;
+  }
+
+  .Button {
+    font-size: 6vh;
   }
 }
 
@@ -14,11 +22,10 @@
   .BtnWrapper {
     width: 80vw;
   }
-}
 
-.Button {
-  font-size: 2.5rem;
-  border-radius: 0.75rem;
+  .Button {
+    font-size: 7vw;
+  }
 }
 
 .InActive {

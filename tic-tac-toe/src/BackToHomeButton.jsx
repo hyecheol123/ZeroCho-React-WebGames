@@ -1,6 +1,7 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome } from '@fortawesome/free-solid-svg-icons';
+import styles from '../styles/BackToHomeButton.module.css';
 
 /**
  * React Component for BackToHomeButton (Where user can choose game mode)
@@ -12,7 +13,7 @@ import { faHome } from '@fortawesome/free-solid-svg-icons';
 const BackToHomeButton = ({ resetModeFunc }) => {
   return (
     <>
-      <button onClick={resetModeFunc}>
+      <button className={styles.Button} onClick={resetModeFunc}>
         <FontAwesomeIcon icon={faHome} />
       </button>
     </>
