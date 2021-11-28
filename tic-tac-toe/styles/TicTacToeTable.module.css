@@ -24,6 +24,7 @@
 
   .TableCell {
     font-size: calc(60vh / 3 - 1rem);
+    line-height: calc(60vh / 3 - 1rem);
   }
 }
 
@@ -35,5 +36,6 @@
 
   .TableCell {
     font-size: calc(70vw / 3 - 1rem);
+    line-height: calc(70vw / 3 - 1rem);
   }
 }
