@@ -47,4 +47,4 @@ const TicTacToeWrapper = () => {
   );
 };
 
-export default TicTacToeWrapper;
+export default React.memo(TicTacToeWrapper);

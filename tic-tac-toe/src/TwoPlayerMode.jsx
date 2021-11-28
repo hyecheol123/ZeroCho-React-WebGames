@@ -1,11 +1,10 @@
 import React from 'react';
 import * as TicTacToeData from './TicTacToeData';
 import whoIsWinner from './whoIsWinner';
+import BackToHomeButton from './BackToHomeButton';
 import TicTacToeTable from './TicTacToeTable';
 import TicTacToeTurnButton from './TicTacToeTurnButton';
 import ResultModal from './ResultModal';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHome } from '@fortawesome/free-solid-svg-icons';
 
 /**
  * React Functional Component for TwoPlayerMode
@@ -13,7 +12,7 @@ import { faHome } from '@fortawesome/free-solid-svg-icons';
  *   - Alternate turn after one user place his/her stone
  *
  * @param {object} props Properties that passed from the parent Component.
- * @param {function} resetMode function to reset game mode
+ * @param {function} props.resetMode function to reset game mode
  * @return {React.ReactElement} a react element referring TwoPlayerMode
  */
 const TwoPlayerMode = ({ resetMode }) => {
@@ -29,15 +28,16 @@ const TwoPlayerMode = ({ resetMode }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state.recentCell]);
 
-  const resetGame = () => {
+  /**
+   * Helper method to reset game
+   */
+  const resetGame = React.useCallback(() => {
     dispatch({ type: TicTacToeData.RESET_GAME });
-  };
+  }, []);
 
   return (
     <div>
-      <button onClick={resetMode}>
-        <FontAwesomeIcon icon={faHome} />
-      </button>
+      <BackToHomeButton resetModeFunc={resetMode} />
       <TicTacToeTable
         tableData={state.tableData}
         isDisabled={state.result !== ''}
@@ -51,4 +51,4 @@ const TwoPlayerMode = ({ resetMode }) => {
   );
 };
 
-export default TwoPlayerMode;
+export default React.memo(TwoPlayerMode);

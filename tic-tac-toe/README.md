@@ -30,6 +30,8 @@ Used `reducer` and React Hooks (Functional Component) to build application.
       10. **Empty Side**
   - Computer player's algorithm to choose random option (1P Easy Mode)
 - Performance optimization
+  - Separate Component
+  - `React.useCallback()` and `React.memo()`
 - Design for both mobile and desktop site.
 
 |            ![]()            |

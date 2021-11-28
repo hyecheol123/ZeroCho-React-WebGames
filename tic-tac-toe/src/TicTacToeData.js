@@ -8,6 +8,7 @@ export const initialData = {
   recentCell: { row: -1, col: -1 },
   turn: 'O',
   result: '',
+  player: '', // For 1P Mode
 };
 
 // Action Types
@@ -15,8 +16,15 @@ export const CLICK_CELL = 'CLICK_CELL';
 export const SET_RESULT = 'SET_RESULT';
 export const CHANGE_TURN = 'CHANGE_TURN';
 export const RESET_GAME = 'RESET_GAME';
+export const SET_PLAYER = 'SET_PLAYER'; // For 1P Mode
 
-// Reducer function
+/**
+ * Reducer Function to change TicTacToe State
+ *
+ * @param {object} state Current state
+ * @param {object} action Includes type of action and payload
+ * @return {object} New State
+ */
 export const reducer = (state, action) => {
   switch (action.type) {
     case CLICK_CELL: {
@@ -43,6 +51,13 @@ export const reducer = (state, action) => {
     }
     case RESET_GAME: {
       return { ...initialData };
+    }
+    case SET_PLAYER: {
+      // For 1P Mode
+      return {
+        ...state,
+        player: action.player,
+      };
     }
     default: {
       console.error('Not Defined Action Type');
