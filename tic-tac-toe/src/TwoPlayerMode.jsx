@@ -1,7 +1,9 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import * as TicTacToeData from './TicTacToeData';
 import whoIsWinner from './whoIsWinner';
 import TicTacToeTable from './TicTacToeTable';
+import TicTacToeTurnButton from './TicTacToeTurnButton';
+import ResultModal from './ResultModal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome } from '@fortawesome/free-solid-svg-icons';
 
@@ -22,17 +24,29 @@ const TwoPlayerMode = ({ resetMode }) => {
   );
 
   // Check for Winner
-  useEffect(() => {
+  React.useEffect(() => {
     whoIsWinner(state, dispatch);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state.recentCell]);
+
+  const resetGame = () => {
+    dispatch({ type: TicTacToeData.RESET_GAME });
+  };
 
   return (
     <div>
       <button onClick={resetMode}>
         <FontAwesomeIcon icon={faHome} />
       </button>
-      <TicTacToeTable tableData={state.tableData} dispatch={dispatch} />
+      <TicTacToeTable
+        tableData={state.tableData}
+        isDisabled={state.result !== ''}
+        dispatch={dispatch}
+      />
+      <TicTacToeTurnButton turn={state.turn} />
+      {state.result && (
+        <ResultModal result={state.result} resetGameFunc={resetGame} />
+      )}
     </div>
   );
 };

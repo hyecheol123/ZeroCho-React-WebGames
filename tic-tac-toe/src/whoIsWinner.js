@@ -33,7 +33,7 @@ const whoIsWinner = (state, dispatch) => {
   } else if (
     tableData[0][2] === turn &&
     tableData[1][1] === turn &&
-    tableData[0][2] === turn
+    tableData[2][0] === turn
   ) {
     // left bottom - right top diagonal check
     win = true;

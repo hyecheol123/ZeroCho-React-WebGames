@@ -2,7 +2,7 @@ import React from 'react';
 import TicTacToeTableCell from './TicTacToeTableCell';
 import styles from '../styles/TicTacToeTable.module.css';
 
-const TicTacToeTable = ({ tableData, dispatch }) => {
+const TicTacToeTable = ({ tableData, isDisabled, dispatch }) => {
   return (
     <div className={styles.Table}>
       {tableData.map((tRow, rIdx) =>
@@ -10,6 +10,9 @@ const TicTacToeTable = ({ tableData, dispatch }) => {
           <TicTacToeTableCell
             key={`${rIdx}-${cIdx}`}
             content={tCell}
+            rIdx={rIdx}
+            cIdx={cIdx}
+            isDisabled={isDisabled}
             dispatch={dispatch}
           />
         ))

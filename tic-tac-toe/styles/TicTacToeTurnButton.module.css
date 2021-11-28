@@ -1,0 +1,28 @@
+.BtnWrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 1.5rem;
+}
+
+@media (orientation: landscape) {
+  .BtnWrapper {
+    width: 73vh;
+  }
+}
+
+@media (orientation: portrait) {
+  .BtnWrapper {
+    width: 80vw;
+  }
+}
+
+.Button {
+  font-size: 2.5rem;
+  border-radius: 0.75rem;
+}
+
+.InActive {
+  color: black;
+  background-color: rgb(229, 226, 255);
+  border: 2px solid rgb(144, 130, 235);
+}
