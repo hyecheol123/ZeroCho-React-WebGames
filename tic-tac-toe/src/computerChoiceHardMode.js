@@ -1,4 +1,24 @@
 /**
+ * Helper method to check whether the TicTacToe table is empty or not
+ *
+ * @param {Array<Array<string>>} tableData 2D array includes cell's data
+ * @return {boolean} whether the TicTacToe table is empty or not
+ */
+function checkIsBoardEmpty(tableData) {
+  for (let rIdx = 0; rIdx < 3; ++rIdx) {
+    for (let cIdx = 0; cIdx < 3; ++cIdx) {
+      if (tableData[rIdx][cIdx] !== '') {
+        // Contains value
+        return false;
+      }
+    }
+  }
+
+  // No cell containing value
+  return true;
+}
+
+/**
  * Helper method to find a line with two myStone and no opponentStone
  *
  * @param {Array<Array<string>>} tableData 2D array includes cell's data
@@ -72,10 +92,13 @@ function findWinningSpot(tableData, myStone, opponentStone) {
  *     2. Block player to put the stone on win position.
  *     3. Makes two stone locates in one row.
  *        Note that the opponent's stone should not be in the row.
- *     4. Prevent two player's stone locate in one row.
- *     5. Put stone on the corner.
- *     6. If player already put the stone on the corner,
+ *        Prioritize the cell which can make more lines with two stones.
+ *     4. Prevent opponent player's stone locate in one row.
+ *        Prioritize the cell which can prevent opponent player making more
+ *          lines with two stones.
+ *     5. If player already put the stone on the corner,
  *          put computer's stone on the opposite corner.
+ *     6. Put stone on the corner.
  *     7. On the opposite corner.
  *     8. Center
  *     9. Empty Corner
@@ -87,20 +110,43 @@ function findWinningSpot(tableData, myStone, opponentStone) {
  *     stone.
  */
 function computerChoiceHardMode(tableData, playerStone) {
-  return new Promise((resolve, __reject) => {
+  return new Promise((resolve, reject) => {
+    // Initialize computerStone, isBoardEmpty, and emptyMap
     const computerStone = playerStone === 'O' ? 'X' : 'O';
+    const isBoardEmpty = checkIsBoardEmpty(tableData);
 
-    // Case 1
-    let candidate = findWinningSpot(tableData, computerStone, playerStone);
-    if (candidate) {
-      resolve(candidate);
+    if (!isBoardEmpty) {
+      // Case 1
+      let candidate = findWinningSpot(tableData, computerStone, playerStone);
+      if (candidate) {
+        resolve(candidate);
+      }
+
+      // Case 2
+      candidate = findWinningSpot(tableData, playerStone, computerStone);
+      if (candidate) {
+        resolve(candidate);
+      }
+
+      // Case 3
+
+      // Case 4
+
+      // Case 5
     }
 
-    // Case 2
-    candidate = findWinningSpot(tableData, playerStone, computerStone);
-    if (candidate) {
-      resolve(candidate);
+    // Case 6 works for both empty and non-empty table
+
+    // Case 7, 8, 9, 10 only works for non-empty board
+    if (!isBoardEmpty) {
+      // Case 7
+      // Case 8
+      // Case 9
+      // Case 10
     }
+
+    // Error on no position resolved at the end of the function
+    reject(new Error('Cordinate Not Found'));
   });
 }
 

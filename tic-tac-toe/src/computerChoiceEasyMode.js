@@ -22,7 +22,7 @@ function computerChoiceEasyMode(tableData) {
 
     // Randomly select one cell from the candidate
     if (candidate.length === 0) {
-      reject(choice);
+      reject(new Error('Cordinate Not Found'));
     } else {
       choice = candidate[Math.floor(Math.random() * candidate.length)];
       resolve(choice);
