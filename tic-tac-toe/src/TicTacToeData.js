@@ -9,6 +9,7 @@ export const initialData = {
   turn: 'O',
   result: '',
   player: '', // For 1P Mode
+  difficulty: '', // For 1P Mode
 };
 
 // Action Types
@@ -16,7 +17,10 @@ export const CLICK_CELL = 'CLICK_CELL';
 export const SET_RESULT = 'SET_RESULT';
 export const CHANGE_TURN = 'CHANGE_TURN';
 export const RESET_GAME = 'RESET_GAME';
+export const RESET_GAME_1P = 'RESET_GAME_1P';
+export const INIT_1P = 'INIT_1P'; // For 1P Mode Initialization
 export const SET_PLAYER = 'SET_PLAYER'; // For 1P Mode
+export const SET_DIFFICULTY = 'SET_DIFFICULTY'; // For 1P Mode
 
 /**
  * Reducer Function to change TicTacToe State
@@ -52,11 +56,36 @@ export const reducer = (state, action) => {
     case RESET_GAME: {
       return { ...initialData };
     }
+    case RESET_GAME_1P: {
+      // For 1P Game Reset
+      return {
+        ...initialData,
+        player: action.player,
+        difficulty: action.difficulty,
+      }
+    }
+    case INIT_1P: {
+      // For 1P Mode Initialization
+      return {
+        ...state,
+        player: 'O',
+        difficulty: 'easy',
+      };
+    }
     case SET_PLAYER: {
       // For 1P Mode
       return {
-        ...state,
+        ...initialData,
         player: action.player,
+        difficulty: state.difficulty
+      };
+    }
+    case SET_DIFFICULTY: {
+      // For 1P Mode
+      return {
+        ...initialData,
+        player: state.player,
+        difficulty: action.difficulty,
       };
     }
     default: {

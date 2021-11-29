@@ -6,6 +6,8 @@ import { CHANGE_TURN, SET_RESULT } from './TicTacToeData';
  *
  * @param {object} state tic-tac-toe data: tableData, recentCell, turn, result
  * @param {function} dispatch function to change state
+ * @return {boolean} whether the turn is changed and ready for other user to put
+ *   the stone
  */
 const whoIsWinner = (state, dispatch) => {
   const { row, col } = state.recentCell;
@@ -42,6 +44,7 @@ const whoIsWinner = (state, dispatch) => {
   if (win) {
     // Winner exists
     dispatch({ type: SET_RESULT, result: `${turn} Win!!` });
+    return false;
   } else {
     // Check for empty cell
     let empty = false;
@@ -62,9 +65,11 @@ const whoIsWinner = (state, dispatch) => {
     if (empty) {
       // Have empty cell
       dispatch({ type: CHANGE_TURN });
+      return true;
     } else {
       // Draw
       dispatch({ type: SET_RESULT, result: 'Draw!!' });
+      return false;
     }
   }
 };

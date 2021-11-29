@@ -1,7 +1,6 @@
 import React from 'react';
 import ModeSelect from './ModeSelect';
-import SinglePlayerMode from './SinglePlayerMode';
-import TwoPlayerMode from './TwoPlayerMode';
+import GamePlay from './GamePlay';
 import '../styles/global.css';
 
 /**
@@ -38,11 +37,11 @@ const TicTacToeWrapper = () => {
 
   return (
     <>
-      {mode === '' && (
+      {mode === '' ? (
         <ModeSelect select1PMode={select1PMode} select2PMode={select2PMode} />
+      ) : (
+        <GamePlay gameMode={mode} resetMode={resetMode} />
       )}
-      {mode === '1p' && <SinglePlayerMode resetMode={resetMode} />}
-      {mode === '2p' && <TwoPlayerMode resetMode={resetMode} />}
     </>
   );
 };

@@ -14,6 +14,7 @@ import styles from '../styles/TicTacToeTurnButton.module.css';
 const TicTacToeTurnButton = ({ turn, dispatch }) => {
   return (
     <div className={styles.BtnWrapper}>
+      {/* TODO: Button Change Player (When changed, reset game)*/}
       <button
         className={
           turn === 'O' ? styles.Button : `${styles.Button} ${styles.InActive}`

@@ -1,0 +1,42 @@
+.Header {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.Button {
+  width: 25%;
+  padding: 0.2rem 1rem;
+}
+
+.DifficultySelect,
+.DifficultySelect select {
+  font-weight: 700;
+}
+
+@media (orientation: landscape) {
+  .Button {
+    font-size: 4vh;
+  }
+
+  .DifficultySelect,
+  .DifficultySelect select {
+    font-size: max(3vh, 1rem);
+  }
+
+  .DifficultySelect select {
+    padding-right: 10px;
+  }
+}
+
+@media (orientation: portrait) {
+  .Button {
+    font-size: 4.5vw;
+  }
+
+  .DifficultySelect,
+  .DifficultySelect select {
+    font-size: max(3.375vw, 1rem);
+  }
+}
