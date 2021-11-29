@@ -2,6 +2,7 @@ import React from 'react';
 import * as TicTacToeData from './TicTacToeData';
 import whoIsWinner from './whoIsWinner';
 import computerChoiceEasyMode from './computerChoiceEasyMode';
+import computerChoiceHardMode from './computerChoiceHardMode';
 import Header from './Header';
 import TicTacToeTable from './TicTacToeTable';
 import TicTacToeTurnButton from './TicTacToeTurnButton';
@@ -46,8 +47,10 @@ const GamePlay = ({ gameMode, resetMode }) => {
     if (state.difficulty === 'easy') {
       computerChoicePromise = computerChoiceEasyMode(state.tableData);
     } else {
-      // TODO: Hard Algorithm
-      // computerChoicePromise = ;
+      computerChoicePromise = computerChoiceHardMode(
+        state.tableData,
+        state.player
+      );
     }
 
     // Display Result after 1 second
@@ -60,7 +63,7 @@ const GamePlay = ({ gameMode, resetMode }) => {
         });
       });
     }, 1000);
-  }, [state.difficulty, state.tableData]);
+  }, [state.difficulty, state.player, state.tableData]);
 
   // Check for Winner
   React.useEffect(() => {
