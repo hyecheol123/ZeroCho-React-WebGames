@@ -37,50 +37,70 @@ const GamePlay = ({ gameMode, resetMode }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  /**
+   * Helper method to put computer's stone (1P)
+   */
+  const computerPutStone = React.useCallback(() => {
+    // Calculate Computer's Choice
+    let computerChoicePromise;
+    if (state.difficulty === 'easy') {
+      computerChoicePromise = computerChoiceEasyMode(state.tableData);
+    } else {
+      // TODO: Hard Algorithm
+      // computerChoicePromise = ;
+    }
+
+    // Display Result after 1 second
+    setTimeout(() => {
+      computerChoicePromise.then((position) => {
+        dispatch({
+          type: TicTacToeData.CLICK_CELL,
+          row: position.row,
+          col: position.col,
+        });
+      });
+    }, 1000);
+  }, [state.difficulty, state.tableData]);
+
   // Check for Winner
   React.useEffect(() => {
-    const prevTurn = state.turn;
-    let isTurnChanged = whoIsWinner(state, dispatch);
+    // Computer put stone first when player is X
+    const isNewGame = state.recentCell.row < 0 || state.recentCell.col < 0;
+    if (isNewGame) {
+      if (state.player === 'X') {
+        computerPutStone();
+      }
+      return;
+    }
 
     // 1P Mode computer's choice
+    const prevTurn = state.turn;
+    const isTurnChanged = whoIsWinner(state, dispatch);
     if (
       gameMode === '1p' &&
       state.player !== '' &&
       isTurnChanged &&
       prevTurn === state.player // When player was previously put the stone
     ) {
-      // Calculate Computer's Choice
-      let computerChoicePromise;
-      if (state.difficulty === 'easy') {
-        computerChoicePromise = computerChoiceEasyMode(state.tableData);
-      } else {
-        // TODO: Hard Algorithm
-        // computerChoicePromise = ;
-      }
-
-      // Display Result after 1 second
-      setTimeout(() => {
-        computerChoicePromise.then((position) => {
-          dispatch({
-            type: TicTacToeData.CLICK_CELL,
-            row: position.row,
-            col: position.col,
-          });
-        });
-      }, 1000);
+      computerPutStone();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [state.recentCell]);
+  }, [state.recentCell, state.player, state.difficulty]);
 
   /**
    * Helper method to reset game
    */
   const resetGame = React.useCallback(() => {
     if (gameMode === '1p') {
-      dispatch({ type: TicTacToeData.RESET_GAME_1P, player: state.player, difficulty: state.difficulty });
+      dispatch({
+        type: TicTacToeData.RESET_GAME_1P,
+        player: state.player,
+        difficulty: state.difficulty,
+      });
     } else {
       dispatch({ type: TicTacToeData.RESET_GAME });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state.player, state.difficulty]);
 
   /**
@@ -111,6 +131,7 @@ const GamePlay = ({ gameMode, resetMode }) => {
       />
       <TicTacToeTurnButton
         turn={state.turn}
+        player={state.player}
         dispatch={gameMode === '1p' ? dispatch : undefined}
       />
       {state.result && (

@@ -62,7 +62,7 @@ export const reducer = (state, action) => {
         ...initialData,
         player: action.player,
         difficulty: action.difficulty,
-      }
+      };
     }
     case INIT_1P: {
       // For 1P Mode Initialization
@@ -77,7 +77,7 @@ export const reducer = (state, action) => {
       return {
         ...initialData,
         player: action.player,
-        difficulty: state.difficulty
+        difficulty: state.difficulty,
       };
     }
     case SET_DIFFICULTY: {
