@@ -256,3 +256,10 @@ Followed lecture contents to build a _Tic Tac Toe_ game.
 Used `reducer` and React Hooks (Functional Component) to build application.
 
 Detailed information can be found here: https://github.com/hyecheol123/ZeroCho-React-WebGames/tree/main/tic-tac-toe
+
+### MineSweeper (지뢰찾기)
+
+Followed lecture contents to build a _MineSweeper_ game.  
+Used `Context API` and React Hooks (Functional Component) to build application.
+
+Detailed information can be found here: https://github.com/hyecheol123/ZeroCho-React-WebGames/tree/main/minesweeper
