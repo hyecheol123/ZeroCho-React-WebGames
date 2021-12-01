@@ -322,7 +322,7 @@ function computerChoiceHardMode(tableData, playerStone) {
     );
     const candidateIdx =
       candidateWeightsIdx[
-      Math.floor(Math.random() * candidateWeightsIdx.length)
+        Math.floor(Math.random() * candidateWeightsIdx.length)
       ];
     resolve({ row: Math.floor(candidateIdx / 3), col: candidateIdx % 3 });
   });

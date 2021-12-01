@@ -17,26 +17,34 @@ Used `reducer` and React Hooks (Functional Component) to build application.
 - 1P and 2P mode
   - Computer player's algorithm to choose best possible option (1P Hard Mode)
     - Priority of choosing location to put the stone.
-      1. Makes computer **win**.
-      2. **Block** player to put the stone on **win** position.
-      3. Makes **two stone locates in one row**.
-         Note that the opponent's stone should not be in the row.
-      4. **Prevent two player's stone locate in one row.**
-      5. Put stone on the **corner**.
-      6. If player already put the stone on the corner, put computer's stone on **the opposite corner**.
-      7. **On the opposite corner.**
-      8. **Center**.
-      9. **Empty Corner**
-      10. **Empty Side**
+      1. Makes computer win.
+      2. Block player to put the stone on win position.
+      3. Makes two stone locates in one row.
+         Note that the opponent's stone should not be in the row.  
+         Prioritize the cell which can make more lines with two stones.  
+         (Weight 350 each)
+      4. Prevent opponent two player's stone locate in one row.  
+         Prioritize the cell which can prevent opponent player making more lines with two stones.  
+         (Weight 100 each)
+      5. If player already put the stone on the corner, put computer's stone on the opposite corner.  
+         (Weight 45 each)
+      6. On the opposite corner.  
+         (Weight 25 each)
+      7. Put stone on the corner.  
+         (Weight 10 each)
+      8. Center  
+         (Weight 5 each)
+      9. Empty Side  
+         (Weight 1 each)
   - Computer player's algorithm to choose random option (1P Easy Mode)
 - Performance optimization
   - Separate Component
   - `React.useCallback()` and `React.memo()`
 - Design for both mobile and desktop site.
 
-|            ![]()            |
-| :-------------------------: |
-| _Demo Image of Tic Tac Toe_ |
+| ![](https://raw.githubusercontent.com/hyecheol123/ZeroCho-React-WebGames/main/img/tic-tac-toe/Tic-Tac-Toe-Demo.png) |
+| :-----------------------------------------------------------------------------------------------------------------: |
+|                                         _Demo Image of Tic Tac Toe 1P Mode_                                         |
 
 Code Link: https://github.com/hyecheol123/ZeroCho-React-WebGames/tree/main/tic-tac-toe  
-Demo Link:
+Demo Link: https://demo1.hcjang.com/tic-tac-toe/
