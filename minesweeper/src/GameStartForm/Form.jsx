@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from '../../styles/GameStartForm/Form.module.css';
 
 /**
  * React Functional Component for Form (Get user's input)
@@ -33,7 +34,7 @@ const Form = React.forwardRef(({ label }, inputRef) => {
 
   return (
     <>
-      <form onSubmit={onFormSubmit}>
+      <form className={styles.Form} onSubmit={onFormSubmit}>
         <label>{`${label}: `}</label>
         <input
           type="number"
@@ -41,7 +42,7 @@ const Form = React.forwardRef(({ label }, inputRef) => {
           onChange={onInputChange}
           min="1"
           ref={inputRef}
-        ></input>
+        />
       </form>
     </>
   );

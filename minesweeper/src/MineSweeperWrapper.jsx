@@ -1,5 +1,6 @@
 import React from 'react';
 import GameStartForm from './GameStartForm/GameStartForm';
+import '../styles/global.css';
 
 const MineSweeperWrapper = () => {
   const test = () => {

@@ -1,0 +1,34 @@
+.Form {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 0.5rem 0;
+}
+
+.Form label,
+input {
+  font-size: 1.5rem;
+}
+
+.Form label {
+  font-weight: 600;
+}
+
+.Form input {
+  flex-shrink: 1;
+  max-width: 130px;
+  margin-left: 1rem;
+  border: 0;
+  border-bottom: 3px solid black;
+  text-align: center;
+}
+
+.Form input::-webkit-outer-spin-button,
+.Form input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.Form input[type='number'] {
+  -moz-appearance: textfield;
+}
