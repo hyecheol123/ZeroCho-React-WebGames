@@ -194,6 +194,7 @@ Lecture Link: https://www.youtube.com/playlist?list=PLcqDmjxt30RtqbStQqk-eYMK8N-
         - The intiaial state will be set to the return value of `init(initialArg)` function.
         - By using `init`, developers can detach the logic to calculate the intial state outside of reducer.
         - Helps resetting the states later.
+
   - **Context API** let developers to pass data through the component tree without passing props.  
     It is designed to share data that can be considered "global" for a tree of components.
     - [**React.createContext(initialValue)**](https://reactjs.org/docs/context.html#reactcreatecontext) is used to create new Context object.
@@ -216,6 +217,8 @@ Lecture Link: https://www.youtube.com/playlist?list=PLcqDmjxt30RtqbStQqk-eYMK8N-
       - ```JavaScript
         const value = React.useContext(TableContext);
         ```
+    - When we use Context API, the the function of the Components re-runs everytime.
+      - Use **React.useMemo()** to save returning value of the functional Component.
 
 ## Project
 
