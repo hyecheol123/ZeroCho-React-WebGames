@@ -291,8 +291,28 @@ function computerChoiceHardMode(tableData, playerStone) {
       }
     }
 
-    // Case 8
+    // Case 8: Center is empty
+    if (tableData[1][1] === '') {
+      weightMap[1][1] += 5;
+    }
+
     // Case 9
+    // Left side is empty
+    if (tableData[1][0] === '') {
+      weightMap[1][0] += 1;
+    }
+    // Top side is empty
+    if (tableData[0][1] === '') {
+      weightMap[0][1] += 1;
+    }
+    // right side is empty
+    if (tableData[1][2] === '') {
+      weightMap[1][2] += 1;
+    }
+    // Bottom side is empty
+    if (tableData[2][1] === '') {
+      weightMap[2][1] += 1;
+    }
 
     // Find max amoung the candidate
     const flattenWeight = [].concat(...weightMap);
@@ -304,7 +324,6 @@ function computerChoiceHardMode(tableData, playerStone) {
       candidateWeightsIdx[
       Math.floor(Math.random() * candidateWeightsIdx.length)
       ];
-    console.log(weightMap);
     resolve({ row: Math.floor(candidateIdx / 3), col: candidateIdx % 3 });
   });
 }
