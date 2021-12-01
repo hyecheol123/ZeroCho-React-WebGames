@@ -55,27 +55,13 @@ const GamePlay = ({ gameMode, resetMode }) => {
 
     // Display Result after 1 second
     setTimeout(() => {
-      computerChoicePromise
-        .then((position) => {
-          dispatch({
-            type: TicTacToeData.CLICK_CELL,
-            row: position.row,
-            col: position.col,
-          });
-        })
-        .catch(() => {
-          // For Hard Mode, if no place to put the stone,
-          // Use Easy Mode algorithm
-          if (state.difficulty === 'hard') {
-            computerChoiceEasyMode(state.tableData).then((position) => {
-              dispatch({
-                type: TicTacToeData.CLICK_CELL,
-                row: position.row,
-                col: position.col,
-              });
-            });
-          }
+      computerChoicePromise.then((position) => {
+        dispatch({
+          type: TicTacToeData.CLICK_CELL,
+          row: position.row,
+          col: position.col,
         });
+      });
     }, 1000);
   }, [state.difficulty, state.player, state.tableData]);
 

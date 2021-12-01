@@ -86,6 +86,95 @@ function findWinningSpot(tableData, myStone, opponentStone) {
 }
 
 /**
+ * Helper method to find cell which can make two stones be placed in one row.
+ * The row should not contain opponentStone
+ *
+ * @param {Array<Array<string>>} tableData 2D array includes cell's data
+ * @param {Array<Array<number>>} weightMap 2D array includes cell's weight
+ * @param {string} myStone my stone
+ * @param {string} opponentStone opponent's stone
+ * @param {number} weight weight that should be added to eligible cell
+ */
+function makeTwoStonesInARow(
+  tableData,
+  weightMap,
+  myStone,
+  opponentStone,
+  weight
+) {
+  // Row Checks
+  for (let rIdx = 0; rIdx < 3; ++rIdx) {
+    // Check whether row contains opponent stone
+    if (!tableData[rIdx].includes(opponentStone)) {
+      // Check whether row contains my stone at least once
+      if (tableData[rIdx].includes(myStone)) {
+        // Find empty cell index
+        for (let cIdx = 0; cIdx < 3; ++cIdx) {
+          if (tableData[rIdx][cIdx] === '') {
+            weightMap[rIdx][cIdx] += weight;
+          }
+        }
+      }
+    }
+  }
+
+  // Column Checks
+  for (let cIdx = 0; cIdx < 3; ++cIdx) {
+    // Extract column
+    const currCol = [
+      tableData[0][cIdx],
+      tableData[1][cIdx],
+      tableData[2][cIdx],
+    ];
+
+    // Check whether column contains opponent's stone
+    if (!currCol.includes(opponentStone)) {
+      // Check whether column contains my stone at least once
+      if (currCol.includes(myStone)) {
+        // Find empty cell in the column
+        for (let rIdx = 0; rIdx < 3; ++rIdx) {
+          if (currCol[rIdx] === '') {
+            weightMap[rIdx][cIdx] += weight;
+          }
+        }
+      }
+    }
+  }
+
+  // right bottom diagonal
+  // Extract diagonal
+  const bDiagonal = [tableData[0][0], tableData[1][1], tableData[2][2]];
+  // Check whether diagonal contains opponent's stone
+  if (!bDiagonal.includes(opponentStone)) {
+    // Check whether diagonal contains my Stone at least once.
+    if (bDiagonal.includes(myStone)) {
+      // Find empty cell in the line
+      for (let idx = 0; idx < 3; ++idx) {
+        if (bDiagonal[idx] === '') {
+          weightMap[idx][idx] += weight;
+        }
+      }
+    }
+  }
+
+  // right top diagonal
+  // Extract diagonal
+  const tDiagonal = [tableData[2][0], tableData[1][1], tableData[0][2]];
+  // Check whether diagonal contains opponent's stone
+  if (!tDiagonal.includes(opponentStone)) {
+    // Check whether diagonal contains my stone at least once
+    if (tDiagonal.includes(myStone)) {
+      // Find empty cell in the line
+      for (let idx = 0; idx < 3; ++idx) {
+        if (tDiagonal[idx] === '') {
+          weightMap[2 - idx][idx] += weight;
+        }
+      }
+    }
+  }
+}
+
+/**
  * Method to choose location to put Computer's stone (Hard Mode)
  *   - Priority of choosing location to put the stone.
  *     1. Makes computer win.
@@ -93,16 +182,24 @@ function findWinningSpot(tableData, myStone, opponentStone) {
  *     3. Makes two stone locates in one row.
  *        Note that the opponent's stone should not be in the row.
  *        Prioritize the cell which can make more lines with two stones.
- *     4. Prevent opponent player's stone locate in one row.
+ *          (Weight 350 each)
+ *     4. Prevent opponent two player's stone locate in one row.
  *        Prioritize the cell which can prevent opponent player making more
  *          lines with two stones.
+ *          (Weight 100 each)
  *     5. If player already put the stone on the corner,
  *          put computer's stone on the opposite corner.
- *     6. Put stone on the corner.
- *     7. On the opposite corner.
+ *          (Weight 45 each)
+ *     6. On the opposite corner.
+ *          (Weight 25 each)
+ *     7. Put stone on the corner.
+ *          (Weight 10 each)
  *     8. Center
+ *          (Weight 5 each)
  *     9. Empty Corner
+ *          (Weight 3 each)
  *     10. Empty Side
+ *           (Weight 1 each)
  *
  * @param {Array<Array<string>>} tableData 2D array includes cell's data
  * @param {string} playerStone Indicates which stone player is using.
@@ -111,42 +208,67 @@ function findWinningSpot(tableData, myStone, opponentStone) {
  */
 function computerChoiceHardMode(tableData, playerStone) {
   return new Promise((resolve, reject) => {
-    // Initialize computerStone, isBoardEmpty, and emptyMap
+    // Initialize computerStone, isBoardEmpty, and weightMap
     const computerStone = playerStone === 'O' ? 'X' : 'O';
     const isBoardEmpty = checkIsBoardEmpty(tableData);
+    const weightMap = new Array(3).fill(0).map(() => new Array(3).fill(0));
 
     if (!isBoardEmpty) {
       // Case 1
       let candidate = findWinningSpot(tableData, computerStone, playerStone);
       if (candidate) {
         resolve(candidate);
+        return;
       }
 
       // Case 2
       candidate = findWinningSpot(tableData, playerStone, computerStone);
       if (candidate) {
         resolve(candidate);
+        return;
       }
 
       // Case 3
+      makeTwoStonesInARow(
+        tableData,
+        weightMap,
+        computerStone,
+        playerStone,
+        350
+      );
 
       // Case 4
+      makeTwoStonesInARow(
+        tableData,
+        weightMap,
+        playerStone,
+        computerStone,
+        100
+      );
 
       // Case 5
+
+      // Case 6
     }
 
-    // Case 6 works for both empty and non-empty table
+    // Case 7, 8, 9, 10 works for both empty and non-emptyboard
+    // Case 7
+    // Case 8
+    // Case 9
+    // Case 10
 
-    // Case 7, 8, 9, 10 only works for non-empty board
-    if (!isBoardEmpty) {
-      // Case 7
-      // Case 8
-      // Case 9
-      // Case 10
-    }
-
-    // Error on no position resolved at the end of the function
-    reject(new Error('Cordinate Not Found'));
+    // Find max amoung the candidate
+    const flattenWeight = [].concat(...weightMap);
+    const maxWeight = Math.max(...flattenWeight);
+    const candidateWeightsIdx = [...flattenWeight.keys()].filter(
+      (i) => flattenWeight[i] === maxWeight
+    );
+    const candidateIdx =
+      candidateWeightsIdx[
+      Math.floor(Math.random() * candidateWeightsIdx.length)
+      ];
+    console.log(weightMap);
+    resolve({ row: Math.floor(candidateIdx / 3), col: candidateIdx % 3 });
   });
 }
 
