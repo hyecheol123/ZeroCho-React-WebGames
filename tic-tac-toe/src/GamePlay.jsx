@@ -29,6 +29,7 @@ const GamePlay = ({ gameMode, resetMode }) => {
     TicTacToeData.reducer,
     TicTacToeData.initialData
   );
+  const timeout = React.useRef(null);
 
   // Initialize 1P setup when mounted
   React.useEffect(() => {
@@ -54,7 +55,7 @@ const GamePlay = ({ gameMode, resetMode }) => {
     }
 
     // Display Result after 1 second
-    setTimeout(() => {
+    timeout.current = setTimeout(() => {
       computerChoicePromise.then((position) => {
         dispatch({
           type: TicTacToeData.CLICK_CELL,
@@ -70,6 +71,9 @@ const GamePlay = ({ gameMode, resetMode }) => {
     // Computer put stone first when player is X
     const isNewGame = state.recentCell.row < 0 || state.recentCell.col < 0;
     if (isNewGame) {
+      // Clear timeout from previous game
+      clearTimeout(timeout.current);
+
       if (state.player === 'X') {
         computerPutStone();
       }
