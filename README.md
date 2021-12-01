@@ -158,7 +158,7 @@ Lecture Link: https://www.youtube.com/playlist?list=PLcqDmjxt30RtqbStQqk-eYMK8N-
   - It also stores all the variables that _used_ in the function.
   - When we pass function as props to the child Component, it is required to wrap the function with `React.useCalback()` to prevent unnecessary re-render caused by props change.
     - Newly created function is _different_ function with previous one.
-- [**React.useReducer()**](https://reactjs.org/docs/hooks-reference.html#usereducer) and **React.useContext()** can substitute `Redux` for simple applications.
+- [**React.useReducer()**](https://reactjs.org/docs/hooks-reference.html#usereducer) and [**Context API**](https://reactjs.org/docs/context.html#gatsby-focus-wrapper) can substitute `Redux` for simple applications.
   For complicated applications, to use asyncronous calls efficiently, it is better to use `Redux`.
 
   - `React.useReducer()` is used to _reduce the number of States used in the application_.
@@ -194,6 +194,28 @@ Lecture Link: https://www.youtube.com/playlist?list=PLcqDmjxt30RtqbStQqk-eYMK8N-
         - The intiaial state will be set to the return value of `init(initialArg)` function.
         - By using `init`, developers can detach the logic to calculate the intial state outside of reducer.
         - Helps resetting the states later.
+  - **Context API** let developers to pass data through the component tree without passing props.  
+    It is designed to share data that can be considered "global" for a tree of components.
+    - [**React.createContext(initialValue)**](https://reactjs.org/docs/context.html#reactcreatecontext) is used to create new Context object.
+      - ```JavaScript
+        export const TableContext = React.createContext({ tableData: [] });
+        ```
+    - The Components that consumes the Context should be wrapped by [**Context.Provider**](https://reactjs.org/docs/context.html#contextprovider).  
+      `props value` gets the data that will be passed to the children.
+      - ```JavaScript
+        <TableContext.Provider value={{ tableData: state.tableData }}>
+          // Components that consumes the context
+          <Form />
+          <Button />
+        </TableContext.Provider>
+        ```
+      - Above code may cause performance issue as it continuously makes new object, which causes re-render of all child components.
+        - Developers need to cache the object by using `React.useMemo()`.
+    - [**React.useContext(context)**](https://reactjs.org/docs/hooks-reference.html#usecontext) to use context in child component.
+      - The Context defined in the parent component should be exported.
+      - ```JavaScript
+        const value = React.useContext(TableContext);
+        ```
 
 ## Project
 
