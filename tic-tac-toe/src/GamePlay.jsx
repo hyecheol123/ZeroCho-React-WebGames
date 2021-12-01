@@ -62,7 +62,7 @@ const GamePlay = ({ gameMode, resetMode }) => {
           col: position.col,
         });
       });
-    }, 1000);
+    }, 1500);
   }, [state.difficulty, state.player, state.tableData]);
 
   // Check for Winner

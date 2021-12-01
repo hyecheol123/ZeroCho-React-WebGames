@@ -196,9 +196,7 @@ function makeTwoStonesInARow(
  *          (Weight 10 each)
  *     8. Center
  *          (Weight 5 each)
- *     9. Empty Corner
- *          (Weight 3 each)
- *     10. Empty Side
+ *     9. Empty Side
  *           (Weight 1 each)
  *
  * @param {Array<Array<string>>} tableData 2D array includes cell's data
@@ -245,17 +243,56 @@ function computerChoiceHardMode(tableData, playerStone) {
         computerStone,
         100
       );
-
-      // Case 5
-
-      // Case 6
     }
 
-    // Case 7, 8, 9, 10 works for both empty and non-emptyboard
-    // Case 7
+    // Case 5, 6, 7
+    // Corner is emprt (left-top)
+    if (tableData[0][0] === '') {
+      weightMap[0][0] += 10; // Case 7
+      if (tableData[2][2] === playerStone) {
+        // playerStone on opposite site (Case 5)
+        weightMap[0][0] += 45;
+      } else if (tableData[2][2] === computerStone) {
+        // computerStone on opposite site (Case 6)
+        weightMap[0][0] += 25;
+      }
+    }
+    // Corner is emprt (right-top)
+    if (tableData[0][2] === '') {
+      weightMap[0][2] += 10; // Case 7
+      if (tableData[2][0] === playerStone) {
+        // playerStone on opposite site (Case 5)
+        weightMap[0][2] += 45;
+      } else if (tableData[2][0] === computerStone) {
+        // computerStone on opposite site (Case 6)
+        weightMap[0][2] += 25;
+      }
+    }
+    // Corner is emprt (left-bottom)
+    if (tableData[2][0] === '') {
+      weightMap[2][0] += 10; // Case 7
+      if (tableData[0][2] === playerStone) {
+        // playerStone on opposite site (Case 5)
+        weightMap[2][0] += 45;
+      } else if (tableData[0][2] === computerStone) {
+        // computerStone on opposite site (Case 6)
+        weightMap[2][0] += 25;
+      }
+    }
+    // Corner is emprt (right-bottom)
+    if (tableData[2][2] === '') {
+      weightMap[2][2] += 10; // Case 7
+      if (tableData[0][0] === playerStone) {
+        // playerStone on opposite site (Case 5)
+        weightMap[2][2] += 45;
+      } else if (tableData[0][0] === computerStone) {
+        // computerStone on opposite site (Case 6)
+        weightMap[2][2] += 25;
+      }
+    }
+
     // Case 8
     // Case 9
-    // Case 10
 
     // Find max amoung the candidate
     const flattenWeight = [].concat(...weightMap);
