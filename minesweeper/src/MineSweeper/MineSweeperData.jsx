@@ -14,9 +14,9 @@ export const CELL_CODE = {
 const initialData = {
   tableData: null, // 2D array storing table data
   gameData: { nRow: 0, nCol: 0, nMine: 0 }, // Game's setup
-  timer: 0, // How many seconds elapsed from game start
   result: '', // Game result
-  halted: true, // Game halted when user win or clicked mine
+  halted: true, // Game halted when user win or clicked
+  playTime: 0, // Play Time of the game. Only updated when the game end
   openedCount: 0, // Counts opened cell
 };
 
@@ -26,7 +26,7 @@ export const OPEN_CELL = 'OPEN_CELL';
 export const CLICK_MINE = 'CLICK_MINE';
 export const FLAG_CELL = 'FLAG_CELL';
 export const UNFLAG_CELL = 'UNFLAG_CELL';
-export const INCREMENT_TIMER = 'INCREMENT_TIMER';
+export const UPDATE_PLAYTIME = 'UPDATE_PLAYTIME';
 
 /**
  * Function to plant mine: Initialize game board
@@ -47,9 +47,9 @@ const plantMine = (nRow, nCol, nMine) => {
   }
 
   // Create tableData (nRow by nCol array filled with CELL_CODE.NORMAL)
-  const tableData = new Array(nRow)
+  const tableData = new Array(parseInt(nRow))
     .fill(undefined)
-    .map(() => new Array(nCol).fill(CELL_CODE.NORMAL));
+    .map(() => new Array(parseInt(nCol)).fill(CELL_CODE.NORMAL));
   // Add mine to the tableData
   minesIdx.forEach((v) => {
     tableData[Math.floor(v / nCol)][v % nCol] = CELL_CODE.MINE;
@@ -74,8 +74,8 @@ const reducer = (state, action) => {
         gameData: { nRow: action.nRow, nCol: action.nCol, nMine: action.nMine },
         halted: false,
       };
-    case INCREMENT_TIMER:
-      return { ...state, timer: state.timer + 1 };
+    case UPDATE_PLAYTIME:
+      return { ...state, playTime: action.playTime };
     default:
       return state;
   }
@@ -85,6 +85,7 @@ const reducer = (state, action) => {
 export const TableContext = React.createContext({
   tableData: null, // 2D array storing table data
   halted: true, // Game halted when user win or clicked mine
+  playTime: 0, // Play Time of the game. Only updated when the game end
   dispatch: () => {}, // Function to update state
 });
 
@@ -104,9 +105,10 @@ export const TableProvider = ({ children }) => {
     return {
       tableData: state.tableData,
       halted: state.halted,
+      playTime: state.playTime,
       dispatch: dispatch,
     };
-  }, [state.tableData, state.halted]);
+  }, [state.tableData, state.halted, state.playTime]);
 
   return (
     <TableContext.Provider value={value}>{children}</TableContext.Provider>

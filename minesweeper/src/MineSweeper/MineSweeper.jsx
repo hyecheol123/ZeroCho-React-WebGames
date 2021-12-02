@@ -1,5 +1,8 @@
 import React from 'react';
 import * as MineSweeperData from './MineSweeperData';
+import Timer from './Timer';
+import NumberMine from './NumberMine';
+import ResetGameBtn from './ResetGameBtn';
 
 /**
  * React Functional Component for MineSweeper (Game Player)
@@ -15,24 +18,7 @@ const MineSweeper = ({ gameData, resetGameFunc }) => {
   };
 
   // Context
-  const { halted, dispatch } = React.useContext(MineSweeperData.TableContext);
-
-  // Timer
-  React.useEffect(() => {
-    let interval;
-    // When game is on-going, count time
-    if (halted === false) {
-      interval = setInterval(() => {
-        dispatch({ type: MineSweeperData.INCREMENT_TIMER });
-      }, 1000);
-    }
-
-    // Clear interval when MineSweeper unmounts
-    return () => {
-      clearInterval(interval);
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [halted]);
+  const { dispatch } = React.useContext(MineSweeperData.TableContext);
 
   // Start Game
   React.useEffect(() => {
@@ -43,12 +29,16 @@ const MineSweeper = ({ gameData, resetGameFunc }) => {
       nMine: gameData.nMine,
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [gameData.nRow, gameData.nCol, gameData.nMine]);
+  }, [gameData]);
 
   return (
     <>
       {test()}
-      <span>Reached</span>
+      <div>
+        <Timer />
+        <NumberMine nMine={gameData.nMine} />
+      </div>
+      <ResetGameBtn resetGameFunc={resetGameFunc} />
     </>
   );
 };
