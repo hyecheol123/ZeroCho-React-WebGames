@@ -1,6 +1,11 @@
 import React from 'react';
 import { TableContext } from './MineSweeperData';
 
+/**
+ * React Functional Component to display elapsed time
+ *
+ * @return {React.ReactElement} React Element representing the Timer
+ */
 const Timer = () => {
   const test = (sec) => {
     console.log(`${sec} timer`);

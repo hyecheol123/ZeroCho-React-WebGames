@@ -1,0 +1,40 @@
+.TableWrapper {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  max-width: 100%;
+  overflow: auto;
+  /* Hide scrollbar for IE, Edge and Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.Table {
+  margin: auto;
+  display: grid;
+  row-gap: 1px;
+  column-gap: 1px;
+  background-color: black;
+  padding: 2px;
+  overflow: auto;
+  /* Hide scrollbar for IE, Edge and Firefox */
+  height: min-content;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.TableWrapper::-webkit-scrollbar,
+.Table::-webkit-scrollbar {
+  display: none;
+}
+
+.Table div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+  background-color: white;
+  width: 25px;
+  height: 25px;
+}

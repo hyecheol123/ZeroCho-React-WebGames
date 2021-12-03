@@ -2,7 +2,9 @@ import React from 'react';
 import * as MineSweeperData from './MineSweeperData';
 import Timer from './Timer';
 import NumberMine from './NumberMine';
+import Table from './Table/Table';
 import ResetGameBtn from './ResetGameBtn';
+import styles from '../../styles/MineSweeper/MineSweeper.module.css';
 
 /**
  * React Functional Component for MineSweeper (Game Player)
@@ -18,28 +20,33 @@ const MineSweeper = ({ gameData, resetGameFunc }) => {
   };
 
   // Context
-  const { dispatch } = React.useContext(MineSweeperData.TableContext);
+  const { tableData, dispatch } = React.useContext(
+    MineSweeperData.TableContext
+  );
 
   // Start Game
   React.useEffect(() => {
-    dispatch({
-      type: MineSweeperData.START_GAME,
-      nRow: gameData.nRow,
-      nCol: gameData.nCol,
-      nMine: gameData.nMine,
-    });
+    if (!tableData) {
+      dispatch({
+        type: MineSweeperData.START_GAME,
+        nRow: gameData.nRow,
+        nCol: gameData.nCol,
+        nMine: gameData.nMine,
+      });
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [gameData]);
 
   return (
-    <>
+    <div className={styles.MineSweeper}>
       {test()}
-      <div>
+      <div className={styles.Header}>
         <Timer />
         <NumberMine nMine={gameData.nMine} />
       </div>
+      <Table />
       <ResetGameBtn resetGameFunc={resetGameFunc} />
-    </>
+    </div>
   );
 };
 
