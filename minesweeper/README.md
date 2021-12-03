@@ -28,9 +28,9 @@ Used `Context API` and React Hooks (Functional Component) to build application.
 - Design for both desktop and mobile site.
 - Perfomance Optimization
 
-|            ![]()            |
-| :-------------------------: |
-| _Demo Image of MineSweeper_ |
+| ![](https://raw.githubusercontent.com/hyecheol123/ZeroCho-React-WebGames/main/img/minesweeper/MineSweeper-Demo.png) |
+| :-----------------------------------------------------------------------------------------------------------------: |
+|                                             _Demo Image of MineSweeper_                                             |
 
 Code Link: https://github.com/hyecheol123/ZeroCho-React-WebGames/tree/main/minesweeper  
-Demo Link:
+Demo Link: https://demo1.hcjang.com/minesweeper
