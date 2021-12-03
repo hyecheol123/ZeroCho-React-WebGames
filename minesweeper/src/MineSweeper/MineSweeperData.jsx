@@ -18,7 +18,6 @@ const initialData = {
   gameData: { nRow: 0, nCol: 0, nMine: 0 }, // Game's setup
   result: '', // Game result
   halted: true, // Game halted when user win or clicked
-  playTime: 0, // Play Time of the game. Only updated when the game end
   openedCount: 0, // Counts opened cell
 };
 
@@ -28,7 +27,6 @@ export const OPEN_CELL = 'OPEN_CELL';
 export const CLICK_MINE = 'CLICK_MINE';
 export const FLAG_CELL = 'FLAG_CELL';
 export const UNFLAG_CELL = 'UNFLAG_CELL';
-export const UPDATE_PLAYTIME = 'UPDATE_PLAYTIME';
 
 /**
  * Function to plant mine: Initialize game board
@@ -66,12 +64,14 @@ const plantMine = (nRow, nCol, nMine) => {
  *
  * @param {object} cellIdx contains starting cell's index
  * @param {Array<Array<string>>} tableData 2D array storing table data
+ * @return {number} the nubmer of opened cell
  */
 const openCell = (cellIdx, tableData) => {
   // Use BFS
   const queue = [cellIdx]; // Containing cells will be checked
   const visited = {}; // Contains visited cell's ${rIdx}-${cIdx} information
   let current; // current cell
+  let openCount = 0;
   const OK_CELLS = [CELL_CODE.NORMAL, CELL_CODE.FLAG];
   const BAD_CELLS = [CELL_CODE.MINE, CELL_CODE.FLAG_MINE];
 
@@ -92,6 +92,7 @@ const openCell = (cellIdx, tableData) => {
       if (!OK_CELLS.includes(tableData[current.rIdx][current.cIdx])) {
         continue;
       }
+      openCount += 1;
 
       // Retrieve nearby Cells
       const nearbyCells = [];
@@ -132,6 +133,8 @@ const openCell = (cellIdx, tableData) => {
       }
     }
   }
+
+  return openCount;
 };
 
 /**
@@ -160,8 +163,23 @@ const reducer = (state, action) => {
     case OPEN_CELL: {
       const tableData = [...state.tableData];
       tableData.forEach((row, i) => (tableData[i] = [...row]));
-      openCell({ rIdx: action.rIdx, cIdx: action.cIdx }, tableData);
-      return { ...state, tableData };
+      const newOpenedCount =
+        state.openedCount +
+        openCell({ rIdx: action.rIdx, cIdx: action.cIdx }, tableData);
+
+      // Check for game ends (win)
+      const { gameData } = state;
+      if (newOpenedCount === gameData.nRow * gameData.nCol - gameData.nMine) {
+        return {
+          ...state,
+          tableData,
+          openedCount: newOpenedCount,
+          halted: true,
+          result: 'You Win!!',
+        };
+      } else {
+        return { ...state, tableData, openedCount: newOpenedCount };
+      }
     }
     case CLICK_MINE: {
       const tableData = [...state.tableData];
@@ -179,7 +197,7 @@ const reducer = (state, action) => {
         }
       });
 
-      return { ...state, tableData, halted: true };
+      return { ...state, tableData, halted: true, result: 'Game Over' };
     }
     case FLAG_CELL: {
       const tableData = [...state.tableData];
@@ -209,8 +227,6 @@ const reducer = (state, action) => {
       }
       return { ...state, tableData };
     }
-    case UPDATE_PLAYTIME:
-      return { ...state, playTime: action.playTime };
     default:
       return state;
   }
@@ -220,8 +236,9 @@ const reducer = (state, action) => {
 export const TableContext = React.createContext({
   tableData: null, // 2D array storing table data
   minesIdx: null, // 1D array containing mine index
+  result: '', // Game result
   halted: true, // Game halted when user win or clicked mine
-  playTime: 0, // Play Time of the game. Only updated when the game end
+  openedCount: 0, // Counts opened cell
   dispatch: () => {}, // Function to update state
 });
 
@@ -241,11 +258,18 @@ export const TableProvider = ({ children }) => {
     return {
       tableData: state.tableData,
       minesIdx: state.minesIdx,
+      result: state.result,
       halted: state.halted,
-      playTime: state.playTime,
+      openedCount: state.openedCount,
       dispatch: dispatch,
     };
-  }, [state.tableData, state.minesIdx, state.halted, state.playTime]);
+  }, [
+    state.tableData,
+    state.minesIdx,
+    state.result,
+    state.halted,
+    state.openedCount,
+  ]);
 
   return (
     <TableContext.Provider value={value}>{children}</TableContext.Provider>

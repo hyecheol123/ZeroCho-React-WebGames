@@ -1,13 +1,11 @@
 import React from 'react';
-import * as MineSweeperData from './MineSweeperData';
-import Timer from './Timer';
-import NumberMine from './NumberMine';
-import Table from './Table/Table';
-import ResetGameBtn from './ResetGameBtn';
-import styles from '../../styles/MineSweeper/MineSweeper.module.css';
+import { TableContext } from './MineSweeperData';
+import GamePlay from './GamePlay';
+import ResultModal from './ResultModal';
 
 /**
- * React Functional Component for MineSweeper (Game Player)
+ * React Functional Component for MineSweeper
+ *   - Wrap GamePlay and ResultModal
  *
  * @param {object} props Properties that passed from the parent Component.
  * @param {object} props.gameData Contains game properties
@@ -15,38 +13,26 @@ import styles from '../../styles/MineSweeper/MineSweeper.module.css';
  * @return {React.ReactElement} a react element referring MineSweeper
  */
 const MineSweeper = ({ gameData, resetGameFunc }) => {
-  const test = () => {
-    console.log('minesweeper reached');
-  };
-
   // Context
-  const { tableData, dispatch } = React.useContext(
-    MineSweeperData.TableContext
-  );
+  const { result } = React.useContext(TableContext);
 
-  // Start Game
-  React.useEffect(() => {
-    if (!tableData) {
-      dispatch({
-        type: MineSweeperData.START_GAME,
-        nRow: gameData.nRow,
-        nCol: gameData.nCol,
-        nMine: gameData.nMine,
-      });
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [gameData]);
+  // State
+  const [showResult, setShowResult] = React.useState(true);
+
+  /**
+   * Helper method to close modal
+   */
+  const closeModal = React.useCallback(() => {
+    setShowResult(false);
+  }, []);
 
   return (
-    <div className={styles.MineSweeper}>
-      {test()}
-      <div className={styles.Header}>
-        <Timer />
-        <NumberMine nMine={gameData.nMine} />
-      </div>
-      <Table />
-      <ResetGameBtn resetGameFunc={resetGameFunc} />
-    </div>
+    <>
+      <GamePlay gameData={gameData} resetGameFunc={resetGameFunc} />
+      {result && showResult && (
+        <ResultModal result={result} closeModalFunc={closeModal} />
+      )}
+    </>
   );
 };
 

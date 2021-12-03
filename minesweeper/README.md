@@ -18,12 +18,13 @@ Used `Context API` and React Hooks (Functional Component) to build application.
 **What I added/modified**
 
 - User specify the game setting before enters the game.
-  - Will have separated view for setup the game.
-- Max number of rows and columns of the game board will be calculated based on the viewport size.
-  - Though viewport resized, current game will continue (user should scroll the board while playing the game).
 - Change algorithm to open adjacent cells (BFS-based algorithm).
 - Rather than using right click, when user clicked a cell, it will display a menu to either flag or open the cell.
-- Result is displayed on modal
+  - When user clicked on the flagged cell, the menu only have option to unflag the cell.
+  - When user clicked elsewhere except the menu region, menu will disappear.
+  - When user scrolls the table, menu will disappear.
+- Display all mines (both flagged and unflagged) when game ends.
+- Display result in modal
 - Design for both desktop and mobile site.
 - Perfomance Optimization
 

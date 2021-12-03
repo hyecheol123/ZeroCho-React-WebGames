@@ -15,6 +15,7 @@ const Timer = () => {
 
   React.useEffect(() => {
     let interval;
+
     // When game is on-going, count time
     if (halted === false) {
       interval = setInterval(() => {
