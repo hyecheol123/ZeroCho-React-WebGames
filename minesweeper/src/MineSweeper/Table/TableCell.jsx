@@ -55,7 +55,7 @@ const getCellText = (cellCode) => {
     case CELL_CODE.DISCOVERED_MINE:
       return <FontAwesomeIcon style={{ color: 'red' }} icon={faBomb} />;
     case CELL_CODE.MINE:
-      return 'X';
+      return '';
     default:
       if (cellCode !== 0) {
         return (
