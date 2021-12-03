@@ -22,10 +22,6 @@ const tableStyleGenerator = (tableData) => {
  * @return {React.ReactElement} React Element representing the Table
  */
 const Table = () => {
-  const test = () => {
-    console.log(`table Reached`);
-  };
-
   // Refs
   const tableWrapperRef = React.useRef();
   const tableRef = React.useRef();
@@ -112,7 +108,6 @@ const Table = () => {
 
   return (
     <>
-      {test()}
       <div ref={tableWrapperRef} className={styles.TableWrapper}>
         <div
           ref={tableRef}

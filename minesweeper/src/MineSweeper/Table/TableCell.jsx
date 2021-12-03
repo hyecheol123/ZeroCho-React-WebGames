@@ -80,10 +80,6 @@ const getCellText = (cellCode) => {
  * @return {React.ReactElement} React Element referring TableCell
  */
 const TableCell = ({ rIdx, cIdx, data, isHighlighted, setMenuInfo }) => {
-  const test = () => {
-    console.log(`tableCell Reached`);
-  };
-
   /**
    * Function to highlight clicked cell and show menu
    *
@@ -105,7 +101,6 @@ const TableCell = ({ rIdx, cIdx, data, isHighlighted, setMenuInfo }) => {
 
   return (
     <>
-      {test()}
       <div style={getCellStyle(data, isHighlighted)} onClick={onCellClick}>
         {getCellText(data)}
       </div>

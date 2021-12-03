@@ -15,10 +15,6 @@ import styles from '../../styles/MineSweeper/GamePlay.module.css';
  * @return {React.ReactElement} a react element referring GamePlay
  */
 const GamePlay = ({ gameData, resetGameFunc }) => {
-  const test = () => {
-    console.log('gameplay reached');
-  };
-
   // Context
   const { tableData, dispatch } = React.useContext(
     MineSweeperData.TableContext
@@ -39,7 +35,6 @@ const GamePlay = ({ gameData, resetGameFunc }) => {
 
   return (
     <div className={styles.MineSweeper}>
-      {test()}
       <div className={styles.Header}>
         <Timer />
         <NumberMine nMine={gameData.nMine} />

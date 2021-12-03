@@ -8,13 +8,8 @@ import React from 'react';
  * @return {React.ReactElement} React Element representing NumberMine
  */
 const NumberMine = ({ nMine }) => {
-  const test = () => {
-    console.log(`nMine Reached`);
-  };
-
   return (
     <>
-      {test()}
       <span># Mine: {nMine}</span>
     </>
   );

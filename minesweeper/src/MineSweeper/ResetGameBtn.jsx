@@ -9,13 +9,8 @@ import styles from '../../styles/MineSweeper/ResetGameBtn.module.css';
  * @return {React.ReactElement} React Element representing the ResetGameBtn
  */
 const ResetGameBtn = ({ resetGameFunc }) => {
-  const test = () => {
-    console.log(`newGameBtn Reached`);
-  };
-
   return (
     <>
-      {test()}
       <button className={styles.Btn} onClick={resetGameFunc}>
         New Game
       </button>
