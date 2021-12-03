@@ -137,11 +137,7 @@ const CellClickMenu = ({ cellIdx, cellRect, closeMenuFunc }) => {
         closeMenuFunc();
         return;
       case MineSweeperData.CELL_CODE.MINE:
-        dispatch({
-          type: MineSweeperData.CLICK_MINE,
-          rIdx: cellIdx.rIdx,
-          cIdx: cellIdx.cIdx,
-        });
+        dispatch({ type: MineSweeperData.CLICK_MINE });
         closeMenuFunc();
         return;
       default:
