@@ -60,8 +60,45 @@ const FLAGGED = 'FLAGGED';
  * @return {React.ReactElement} React Element representing CellClickMenu
  */
 const CellClickMenu = ({ cellIdx, cellRect, closeMenuFunc }) => {
+  // Refs
+  const menu0Ref = React.useRef();
+  const menu1Ref = React.useRef();
+  const menu2Ref = React.useRef();
+
   // When clicked outside, close the menu
-  React.useEffect(() => {});
+  React.useEffect(() => {
+    /**
+     * Helper method to handle click events trigerred outside the menu
+     *
+     * @param {Event} event Click Event
+     */
+    const handleClickOutsideMenu = (event) => {
+      // HTML Element of menu divs
+      const menuElement = [
+        menu0Ref?.current,
+        menu1Ref?.current,
+        menu2Ref?.current,
+      ];
+
+      // When clicked outside the menu, close the menu
+      if (!menuElement.includes(event.target)) {
+        event.stopPropagation();
+        closeMenuFunc();
+      }
+    };
+
+    document.addEventListener('click', handleClickOutsideMenu, {
+      capture: true,
+    });
+
+    return () => {
+      // Unbind event listener for cleanup
+      document.removeEventListener('click', handleClickOutsideMenu, {
+        capture: true,
+      });
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [menu0Ref, menu1Ref, menu2Ref]);
 
   // Context
   const { tableData } = React.useContext(TableContext);
@@ -87,12 +124,14 @@ const CellClickMenu = ({ cellIdx, cellRect, closeMenuFunc }) => {
       {menuStat === UNFLAGGED && (
         <>
           <div
+            ref={menu0Ref}
             style={menuStyleGenerator(cellIdx, boardSize, cellRect, 0)}
             className={styles.MenuButton}
           >
             <FontAwesomeIcon icon={faCheck} />
           </div>
           <div
+            ref={menu1Ref}
             style={menuStyleGenerator(cellIdx, boardSize, cellRect, 1)}
             className={styles.MenuButton}
           >
