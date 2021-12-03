@@ -62,6 +62,79 @@ const plantMine = (nRow, nCol, nMine) => {
 };
 
 /**
+ * Helper method to recursively open the cells
+ *
+ * @param {object} cellIdx contains starting cell's index
+ * @param {Array<Array<string>>} tableData 2D array storing table data
+ */
+const openCell = (cellIdx, tableData) => {
+  // Use BFS
+  const queue = [cellIdx]; // Containing cells will be checked
+  const visited = {}; // Contains visited cell's ${rIdx}-${cIdx} information
+  let current; // current cell
+  const OK_CELLS = [CELL_CODE.NORMAL, CELL_CODE.FLAG];
+  const BAD_CELLS = [CELL_CODE.MINE, CELL_CODE.FLAG_MINE];
+
+  // Repeat while queue contains cell
+  while (queue.length > 0) {
+    // Retrieve first element of queue
+    current = queue.shift();
+
+    // Only when current cell is defined and not visited
+    if (
+      tableData[current.rIdx][current.cIdx] !== undefined &&
+      visited[`${current.rIdx}-${current.cIdx}`] !== true
+    ) {
+      // Mark as visited
+      visited[`${current.rIdx}-${current.cIdx}`] = true;
+
+      // Filter only NORMAL and FLAG cells
+      if (!OK_CELLS.includes(tableData[current.rIdx][current.cIdx])) {
+        continue;
+      }
+
+      // Retrieve nearby Cells
+      const nearbyCells = [];
+      // above row
+      if (current.rIdx - 1 >= 0) {
+        nearbyCells.push(
+          { rIdx: current.rIdx - 1, cIdx: current.cIdx - 1 },
+          { rIdx: current.rIdx - 1, cIdx: current.cIdx },
+          { rIdx: current.rIdx - 1, cIdx: current.cIdx + 1 }
+        );
+      }
+      // current row
+      nearbyCells.push(
+        { rIdx: current.rIdx, cIdx: current.cIdx - 1 },
+        { rIdx: current.rIdx, cIdx: current.cIdx + 1 }
+      );
+      // below row
+      if (current.rIdx + 1 < tableData.length) {
+        nearbyCells.push(
+          { rIdx: current.rIdx + 1, cIdx: current.cIdx - 1 },
+          { rIdx: current.rIdx + 1, cIdx: current.cIdx },
+          { rIdx: current.rIdx + 1, cIdx: current.cIdx + 1 }
+        );
+      }
+
+      // Count nearby mines and add nearby okay cells to queue if available
+      const okayCells = nearbyCells.filter(
+        (c) => !BAD_CELLS.includes(tableData[c.rIdx][c.cIdx])
+      );
+      if (okayCells.length === nearbyCells.length) {
+        // Do not have mines nearby
+        okayCells.forEach((c) => queue.push(c));
+        tableData[current.rIdx][current.cIdx] = CELL_CODE.OPEN;
+      } else {
+        // Have mines nearby
+        tableData[current.rIdx][current.cIdx] =
+          nearbyCells.length - okayCells.length;
+      }
+    }
+  }
+};
+
+/**
  * Reducer to update the state
  *
  * @param {object} state current state
@@ -86,10 +159,8 @@ const reducer = (state, action) => {
       };
     case OPEN_CELL: {
       const tableData = [...state.tableData];
-      tableData[action.rIdx] = [...state.tableData[action.rIdx]];
-      tableData[action.rIdx][action.cIdx] = CELL_CODE.OPEN;
-      // TODO: Display mine count
-      // TODO: Recursively open cell
+      tableData.forEach((row, i) => (tableData[i] = [...row]));
+      openCell({ rIdx: action.rIdx, cIdx: action.cIdx }, tableData);
       return { ...state, tableData };
     }
     case CLICK_MINE: {
