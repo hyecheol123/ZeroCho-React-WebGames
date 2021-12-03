@@ -7,6 +7,7 @@ import { faBomb, faFlag } from '@fortawesome/free-solid-svg-icons';
  * Function to get cell's style (background)
  *
  * @param {number} cellCode cell code for current cell
+ * @param {boolean} highlighted Indicate whether the cell is highlighted or not
  * @return {object} CSS Style for the cell
  */
 const getCellStyle = (cellCode, highlighted) => {
@@ -16,7 +17,7 @@ const getCellStyle = (cellCode, highlighted) => {
   if (highlighted) {
     style.border = '2px solid yellow';
     style.width = '21px';
-    style.height = '21px'
+    style.height = '21px';
   }
 
   // Define style based on the cellCode
@@ -66,8 +67,7 @@ const getCellText = (cellCode) => {
  * @param {number} props.cIdx Index of column
  * @param {boolean} props.isHighlighted Whether cell is highlighted or not
  * @param {function} props.setMenuInfo Function to set information which will be
- *   used to draw the menu. Cell's bounding rectangle and setState function to 
- *   unset cell highlight.
+ *   used to draw the menu.
  * @return {React.ReactElement} React Element referring TableCell
  */
 const TableCell = ({ rIdx, cIdx, isHighlighted, setMenuInfo }) => {
@@ -77,12 +77,22 @@ const TableCell = ({ rIdx, cIdx, isHighlighted, setMenuInfo }) => {
 
   /**
    * Function to highlight clicked cell and show menu
-   * 
+   *
    * @param {Event} event click event from table cell
    */
-  const onCellClick = React.useCallback((event) => {
-    setMenuInfo({ rIdx, cIdx }, event.target.getBoundingClientRect());
-  }, []);
+  const onCellClick = React.useCallback(
+    (event) => {
+      // When the cell is currently clicked, do nothing
+      if (isHighlighted) {
+        return;
+      }
+
+      // Highlight and display menu
+      setMenuInfo({ rIdx, cIdx }, event.target.getBoundingClientRect());
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [isHighlighted]
+  );
 
   // Context
   const { tableData } = React.useContext(TableContext);
@@ -90,7 +100,10 @@ const TableCell = ({ rIdx, cIdx, isHighlighted, setMenuInfo }) => {
   return (
     <>
       {test()}
-      <div style={getCellStyle(tableData[rIdx][cIdx], isHighlighted)} onClick={onCellClick}>
+      <div
+        style={getCellStyle(tableData[rIdx][cIdx], isHighlighted)}
+        onClick={onCellClick}
+      >
         {getCellText(tableData[rIdx][cIdx])}
       </div>
     </>

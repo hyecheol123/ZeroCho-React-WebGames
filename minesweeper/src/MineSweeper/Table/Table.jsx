@@ -30,18 +30,29 @@ const Table = () => {
   const { tableData } = React.useContext(TableContext);
 
   // State
-  const [pointerLoc, setPointerLoc] = React.useState(undefined);
-  const [highlightedCell, setHighlightedCell] = React.useState({ rIdx: -1, cIdx: -1 });
+  const [highlightedCell, setHighlightedCell] = React.useState({
+    rIdx: -1,
+    cIdx: -1,
+  });
+  const [cellRect, setCellRect] = React.useState(undefined);
 
   /**
    * Function to set information that will be used to draw menu
-   * 
-   * @param {object} cellIdx contain low index to highlight
-   * @param {object} cellRect Cell's offset rectangle
+   *
+   * @param {object} cellIdx contain cell's index to highlight
+   * @param {object} cellRect contain cell's bounding rectangle coordinate
    */
   const setMenuInfo = React.useCallback((cellIdx, cellRect) => {
     setHighlightedCell(cellIdx);
-    setPointerLoc(cellRect);
+    setCellRect(cellRect);
+  }, []);
+
+  /**
+   * Function to close cell menu and unset highlight
+   */
+  const closeMenu = React.useCallback(() => {
+    setHighlightedCell({ rIdx: -1, cIdx: -1 });
+    setCellRect(undefined);
   }, []);
 
   return (
@@ -55,16 +66,26 @@ const Table = () => {
                 key={`${rIdx}-${cIdx}`}
                 rIdx={rIdx}
                 cIdx={cIdx}
-                isHighlighted={(rIdx === highlightedCell.rIdx && cIdx === highlightedCell.cIdx) ? true : false}
+                isHighlighted={
+                  rIdx === highlightedCell.rIdx && cIdx === highlightedCell.cIdx
+                    ? true
+                    : false
+                }
                 setMenuInfo={setMenuInfo}
               />
             ))
           )}
         </div>
-        {pointerLoc && <CellClickMenu pointerLoc={pointerLoc} />}
+        {cellRect && (
+          <CellClickMenu
+            cellIdx={highlightedCell}
+            cellRect={cellRect}
+            closeMenuFunc={closeMenu}
+          />
+        )}
       </div>
     </>
   );
 };
 
-export default React.memo(Table);
+export default Table;

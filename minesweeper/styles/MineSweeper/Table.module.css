@@ -38,3 +38,14 @@
   width: 25px;
   height: 25px;
 }
+
+.MenuButton {
+  width: 35px;
+  height: 35px;
+  line-height: 35px;
+  text-align: center;
+  border-radius: 50%;
+  font-size: 18px;
+  background-color: lightblue;
+  position: fixed;
+}
