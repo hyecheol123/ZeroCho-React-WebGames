@@ -1,5 +1,6 @@
 import React from 'react';
 import Form from './Form';
+import MineNumberWarningModal from './MineNumberWarningModal';
 import styles from '../../styles/GameStartForm/GameStartForm.module.css';
 
 /**
@@ -10,6 +11,8 @@ import styles from '../../styles/GameStartForm/GameStartForm.module.css';
  * @return {React.ReactElement} a react element referring GameStartForm
  */
 const GameStartForm = ({ setGameDataFunc }) => {
+  // State
+  const [warning, setWarning] = React.useState(false);
   // Refs
   const rowRef = React.useRef(null);
   const columnRef = React.useRef(null);
@@ -20,21 +23,37 @@ const GameStartForm = ({ setGameDataFunc }) => {
    *   - Check user's input and set the game data
    */
   const onClickBtn = () => {
-    // TODO: Check user's input
-    setGameDataFunc(
-      rowRef.current.value,
-      columnRef.current.value,
-      mineRef.current.value
-    );
+    const nRow = rowRef.current.value;
+    const nCol = columnRef.current.value;
+    const nMine = mineRef.current.value;
+
+    // Check user's input
+    if (nMine > nRow * nCol) {
+      // Warning modal
+      setWarning(true);
+    } else {
+      // Start Game
+      setGameDataFunc(nRow, nCol, nMine);
+    }
   };
 
+  /**
+   * Helper method to clear warning
+   */
+  const clearWarning = React.useCallback(() => {
+    setWarning(false);
+  }, []);
+
   return (
-    <div className={styles.GameStartForm}>
-      <Form ref={rowRef} label="row" />
-      <Form ref={columnRef} label="column" />
-      <Form ref={mineRef} label="mine" />
-      <button onClick={onClickBtn}>Go</button>
-    </div>
+    <>
+      <div className={styles.GameStartForm}>
+        <Form ref={rowRef} label="row" />
+        <Form ref={columnRef} label="column" />
+        <Form ref={mineRef} label="mine" />
+        <button onClick={onClickBtn}>Go</button>
+      </div>
+      {warning && <MineNumberWarningModal closeModalFunc={clearWarning} />}
+    </>
   );
 };
 
