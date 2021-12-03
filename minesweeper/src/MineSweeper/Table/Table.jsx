@@ -31,7 +31,7 @@ const Table = () => {
   const tableRef = React.useRef();
 
   // Context
-  const { tableData } = React.useContext(TableContext);
+  const { tableData, halted } = React.useContext(TableContext);
 
   // State
   const [highlightedCell, setHighlightedCell] = React.useState({
@@ -39,6 +39,33 @@ const Table = () => {
     cIdx: -1,
   });
   const [cellRect, setCellRect] = React.useState(undefined);
+
+  // Prevent Click when game ends
+  React.useEffect(() => {
+    /**
+     * Helper method to prevent click after game ends
+     *
+     * @param {Event} event Click Event
+     */
+    const preventClickWhenGameEnd = (event) => {
+      if (halted) {
+        event.stopPropagation();
+      }
+    };
+
+    // Bind Event Listener
+    const tableWrapperElem = tableWrapperRef.current;
+    tableWrapperElem.addEventListener('click', preventClickWhenGameEnd, {
+      capture: true,
+    });
+
+    return () => {
+      // Unbind Event Listener for cleanup
+      tableWrapperElem.removeEventListener('click', preventClickWhenGameEnd, {
+        capture: true,
+      });
+    };
+  }, [halted]);
 
   /**
    * Function to set information that will be used to draw menu
@@ -98,6 +125,7 @@ const Table = () => {
                 key={`${rIdx}-${cIdx}`}
                 rIdx={rIdx}
                 cIdx={cIdx}
+                data={tableData[rIdx][cIdx]}
                 isHighlighted={
                   rIdx === highlightedCell.rIdx && cIdx === highlightedCell.cIdx
                     ? true

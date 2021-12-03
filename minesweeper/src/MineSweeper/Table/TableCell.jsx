@@ -1,5 +1,5 @@
 import React from 'react';
-import { CELL_CODE, TableContext } from '../MineSweeperData';
+import { CELL_CODE } from '../MineSweeperData';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBomb, faFlag } from '@fortawesome/free-solid-svg-icons';
 
@@ -28,6 +28,9 @@ const getCellStyle = (cellCode, highlighted) => {
     case CELL_CODE.MINE:
       style.backgroundColor = 'limegreen';
       break;
+    case CELL_CODE.CLICKED_MINE:
+      style.backgroundColor = 'yellow';
+      break;
     default:
       style.backgroundColor = 'greenyellow';
   }
@@ -53,9 +56,13 @@ const getCellText = (cellCode) => {
     case CELL_CODE.MINE:
       return 'X';
     default:
-      return (
-        <span style={{ color: 'red', fontWeight: 700 }}>{cellCode}</span> || ''
-      );
+      if (cellCode !== 0) {
+        return (
+          <span style={{ color: 'red', fontWeight: 700 }}>{cellCode}</span>
+        );
+      } else {
+        return '';
+      }
   }
 };
 
@@ -65,12 +72,13 @@ const getCellText = (cellCode) => {
  * @param {object} props Properties that passed from the parent Component.
  * @param {number} props.rIdx Index of row
  * @param {number} props.cIdx Index of column
+ * @param {data} props.data Cell Data
  * @param {boolean} props.isHighlighted Whether cell is highlighted or not
  * @param {function} props.setMenuInfo Function to set information which will be
  *   used to draw the menu.
  * @return {React.ReactElement} React Element referring TableCell
  */
-const TableCell = ({ rIdx, cIdx, isHighlighted, setMenuInfo }) => {
+const TableCell = ({ rIdx, cIdx, data, isHighlighted, setMenuInfo }) => {
   const test = () => {
     console.log(`tableCell Reached`);
   };
@@ -83,28 +91,22 @@ const TableCell = ({ rIdx, cIdx, isHighlighted, setMenuInfo }) => {
   const onCellClick = React.useCallback(
     (event) => {
       // When the cell is currently clicked, do nothing
-      if (isHighlighted) {
+      if (isHighlighted || data >= 0) {
         return;
       }
 
       // Highlight and display menu
-      setMenuInfo({ rIdx, cIdx }, event.target.getBoundingClientRect());
+      setMenuInfo({ rIdx, cIdx }, event.currentTarget.getBoundingClientRect());
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [isHighlighted]
   );
 
-  // Context
-  const { tableData } = React.useContext(TableContext);
-
   return (
     <>
       {test()}
-      <div
-        style={getCellStyle(tableData[rIdx][cIdx], isHighlighted)}
-        onClick={onCellClick}
-      >
-        {getCellText(tableData[rIdx][cIdx])}
+      <div style={getCellStyle(data, isHighlighted)} onClick={onCellClick}>
+        {getCellText(data)}
       </div>
     </>
   );

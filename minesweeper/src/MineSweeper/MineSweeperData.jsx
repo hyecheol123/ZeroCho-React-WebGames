@@ -7,7 +7,8 @@ export const CELL_CODE = {
   FLAG: -2,
   FLAG_MINE: -3,
   CLICKED_MINE: -4,
-  MINE: -5,
+  DISCOVERED_MINE: -5,
+  MINE: -6,
 };
 
 // Initial MineSweeperData
@@ -74,6 +75,49 @@ const reducer = (state, action) => {
         gameData: { nRow: action.nRow, nCol: action.nCol, nMine: action.nMine },
         halted: false,
       };
+    case OPEN_CELL: {
+      const tableData = [...state.tableData];
+      tableData[action.rIdx] = [...state.tableData[action.rIdx]];
+      tableData[action.rIdx][action.cIdx] = CELL_CODE.OPEN;
+      // TODO: Display mine count
+      // TODO: Recursively open cell
+      return { ...state, tableData };
+    }
+    case CLICK_MINE: {
+      const tableData = [...state.tableData];
+      tableData[action.rIdx] = [...state.tableData[action.rIdx]];
+      tableData[action.rIdx][action.cIdx] = CELL_CODE.CLICKED_MINE;
+      // TODO: Display all existing mine
+      return { ...state, tableData, halted: true };
+    }
+    case FLAG_CELL: {
+      const tableData = [...state.tableData];
+      tableData[action.rIdx] = [...state.tableData[action.rIdx]];
+      // eslint-disable-next-line default-case
+      switch (tableData[action.rIdx][action.cIdx]) {
+        case CELL_CODE.NORMAL:
+          tableData[action.rIdx][action.cIdx] = CELL_CODE.FLAG;
+          break;
+        case CELL_CODE.MINE:
+          tableData[action.rIdx][action.cIdx] = CELL_CODE.FLAG_MINE;
+          break;
+      }
+      return { ...state, tableData };
+    }
+    case UNFLAG_CELL: {
+      const tableData = [...state.tableData];
+      tableData[action.rIdx] = [...state.tableData[action.rIdx]];
+      // eslint-disable-next-line default-case
+      switch (tableData[action.rIdx][action.cIdx]) {
+        case CELL_CODE.FLAG:
+          tableData[action.rIdx][action.cIdx] = CELL_CODE.NORMAL;
+          break;
+        case CELL_CODE.FLAG_MINE:
+          tableData[action.rIdx][action.cIdx] = CELL_CODE.MINE;
+          break;
+      }
+      return { ...state, tableData };
+    }
     case UPDATE_PLAYTIME:
       return { ...state, playTime: action.playTime };
     default:

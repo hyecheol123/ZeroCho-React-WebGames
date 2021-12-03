@@ -1,7 +1,7 @@
 import React from 'react';
-import { CELL_CODE, TableContext } from '../MineSweeperData';
+import * as MineSweeperData from '../MineSweeperData';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheck, faFlag, faBan } from '@fortawesome/free-solid-svg-icons';
+import { faCheck, faFlag, faSlash } from '@fortawesome/free-solid-svg-icons';
 import styles from '../../../styles/MineSweeper/Table.module.css';
 
 /**
@@ -81,7 +81,9 @@ const CellClickMenu = ({ cellIdx, cellRect, closeMenuFunc }) => {
       ];
 
       // When clicked outside the menu, close the menu
-      if (!menuElement.includes(event.target)) {
+      if (
+        menuElement.filter((elem) => elem?.contains(event.target)).length === 0
+      ) {
         event.stopPropagation();
         closeMenuFunc();
       }
@@ -101,23 +103,75 @@ const CellClickMenu = ({ cellIdx, cellRect, closeMenuFunc }) => {
   }, [menu0Ref, menu1Ref, menu2Ref]);
 
   // Context
-  const { tableData } = React.useContext(TableContext);
+  const { tableData, dispatch } = React.useContext(
+    MineSweeperData.TableContext
+  );
   const boardSize = { row: tableData.length, column: tableData[0].length };
 
   // Check which menu to display
   let menuStat;
   switch (tableData[cellIdx.rIdx][cellIdx.cIdx]) {
-    case CELL_CODE.NORMAL:
-    case CELL_CODE.MINE:
+    case MineSweeperData.CELL_CODE.NORMAL:
+    case MineSweeperData.CELL_CODE.MINE:
       menuStat = UNFLAGGED;
       break;
-    case CELL_CODE.FLAG:
-    case CELL_CODE.FLAG_MINE:
+    case MineSweeperData.CELL_CODE.FLAG:
+    case MineSweeperData.CELL_CODE.FLAG_MINE:
       menuStat = FLAGGED;
       break;
     default:
       menuStat = undefined;
   }
+
+  /**
+   * Function to handle click check menu (Open Cell)
+   */
+  const onClickCheck = () => {
+    switch (tableData[cellIdx.rIdx][cellIdx.cIdx]) {
+      case MineSweeperData.CELL_CODE.NORMAL:
+        dispatch({
+          type: MineSweeperData.OPEN_CELL,
+          rIdx: cellIdx.rIdx,
+          cIdx: cellIdx.cIdx,
+        });
+        closeMenuFunc();
+        return;
+      case MineSweeperData.CELL_CODE.MINE:
+        dispatch({
+          type: MineSweeperData.CLICK_MINE,
+          rIdx: cellIdx.rIdx,
+          cIdx: cellIdx.cIdx,
+        });
+        closeMenuFunc();
+        return;
+      default:
+        return;
+    }
+  };
+
+  /**
+   * Function to handle click flag menu
+   */
+  const onClickFlag = () => {
+    dispatch({
+      type: MineSweeperData.FLAG_CELL,
+      rIdx: cellIdx.rIdx,
+      cIdx: cellIdx.cIdx,
+    });
+    closeMenuFunc();
+  };
+
+  /**
+   * Function to handle click unflag menu
+   */
+  const onClickUnflag = () => {
+    dispatch({
+      type: MineSweeperData.UNFLAG_CELL,
+      rIdx: cellIdx.rIdx,
+      cIdx: cellIdx.cIdx,
+    });
+    closeMenuFunc();
+  };
 
   return (
     <>
@@ -127,6 +181,7 @@ const CellClickMenu = ({ cellIdx, cellRect, closeMenuFunc }) => {
             ref={menu0Ref}
             style={menuStyleGenerator(cellIdx, boardSize, cellRect, 0)}
             className={styles.MenuButton}
+            onClick={onClickCheck}
           >
             <FontAwesomeIcon icon={faCheck} />
           </div>
@@ -134,8 +189,26 @@ const CellClickMenu = ({ cellIdx, cellRect, closeMenuFunc }) => {
             ref={menu1Ref}
             style={menuStyleGenerator(cellIdx, boardSize, cellRect, 1)}
             className={styles.MenuButton}
+            onClick={onClickFlag}
           >
             <FontAwesomeIcon icon={faFlag} />
+          </div>
+        </>
+      )}
+      {menuStat === FLAGGED && (
+        <>
+          <div
+            ref={menu2Ref}
+            style={menuStyleGenerator(cellIdx, boardSize, cellRect, 2)}
+            className={`${styles.MenuButton} fa-stack`}
+            onClick={onClickUnflag}
+          >
+            <FontAwesomeIcon className={'fa-stack-1x'} icon={faFlag} />
+            <FontAwesomeIcon
+              style={{ color: 'red' }}
+              className={'fa-stack-1x'}
+              icon={faSlash}
+            />
           </div>
         </>
       )}
