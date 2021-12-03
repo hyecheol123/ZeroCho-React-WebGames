@@ -7,10 +7,6 @@ import { TableContext } from './MineSweeperData';
  * @return {React.ReactElement} React Element representing the Timer
  */
 const Timer = () => {
-  const test = (sec) => {
-    console.log(`${sec} timer`);
-  };
-
   // State
   const [timer, setTimer] = React.useState(0);
 
@@ -35,7 +31,6 @@ const Timer = () => {
 
   return (
     <>
-      {test(timer)}
       <span>Timer: {timer} sec</span>
     </>
   );
