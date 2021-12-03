@@ -37,6 +37,9 @@ const GameStartForm = ({ setGameDataFunc }) => {
       // Warning modal
       setWarning(true);
       setMsg('Mine number is larger than the number of cells');
+    } else if (nRow * nCol - nMine < 1) {
+      setWarning(true);
+      setMsg('Should have at least one normal cell and mine each');
     } else {
       // Start Game
       setGameDataFunc(nRow, nCol, nMine);
