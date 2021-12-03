@@ -13,6 +13,7 @@ import styles from '../../styles/GameStartForm/GameStartForm.module.css';
 const GameStartForm = ({ setGameDataFunc }) => {
   // State
   const [warning, setWarning] = React.useState(false);
+  const [msg, setMsg] = React.useState('');
   // Refs
   const rowRef = React.useRef(null);
   const columnRef = React.useRef(null);
@@ -28,9 +29,14 @@ const GameStartForm = ({ setGameDataFunc }) => {
     const nMine = mineRef.current.value;
 
     // Check user's input
-    if (nMine > nRow * nCol) {
+    if (nRow <= 0 || nCol <= 0 || nMine <= 0) {
       // Warning modal
       setWarning(true);
+      setMsg('All numbers should be larger than 0');
+    } else if (nMine > nRow * nCol) {
+      // Warning modal
+      setWarning(true);
+      setMsg('Mine number is larger than the number of cells');
     } else {
       // Start Game
       setGameDataFunc(nRow, nCol, nMine);
@@ -52,7 +58,9 @@ const GameStartForm = ({ setGameDataFunc }) => {
         <Form ref={mineRef} label="mine" />
         <button onClick={onClickBtn}>Go</button>
       </div>
-      {warning && <MineNumberWarningModal closeModalFunc={clearWarning} />}
+      {warning && (
+        <MineNumberWarningModal closeModalFunc={clearWarning} msg={msg} />
+      )}
     </>
   );
 };
