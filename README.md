@@ -227,6 +227,11 @@ Lecture Link: https://www.youtube.com/playlist?list=PLcqDmjxt30RtqbStQqk-eYMK8N-
     - The addresses are only available on front-end, not on back-end.
     - When we refresh the page or access to the link directly, it will cause 404 error.
   - **HashRouter** uses URL's hash (#).
+    - The address after hash (`#`) only used in the front-end, not passed to the server.
+    - Though we refresh, the page is rendered correctly.
+    - Search Engine cannot retrieve the paths under hash.
+  - **Dynamic Route Matching**: Using params (`:<paramName>`) to match the path.
+    - Help reducing `Route` in the code.
 
 ## Project
 
