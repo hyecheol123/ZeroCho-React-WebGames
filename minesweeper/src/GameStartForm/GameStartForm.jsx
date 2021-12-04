@@ -77,7 +77,7 @@ const GameStartForm = ({ setGameDataFunc }) => {
           label="column"
           initialValue={initialGameData.nCol}
         />
-        <Form ref={mineRef} label="mine" initialValue={initialGameData.nRow} />
+        <Form ref={mineRef} label="mine" initialValue={initialGameData.nMine} />
         <button onClick={onClickBtn}>Go</button>
       </div>
       {warning && (
