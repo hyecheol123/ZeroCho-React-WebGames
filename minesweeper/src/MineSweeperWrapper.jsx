@@ -12,6 +12,7 @@ import '../styles/global.css';
 const MineSweeperWrapper = () => {
   // State
   const [gameData, setGameData] = React.useState(null);
+  const [isGameStart, setIsGameStart] = React.useState(false);
 
   /**
    * Helper method to initilize game data
@@ -22,19 +23,25 @@ const MineSweeperWrapper = () => {
    */
   const initializeGameData = (nRow, nColumn, nMine) => {
     setGameData({ nRow: nRow, nCol: nColumn, nMine: nMine });
+    setIsGameStart(true);
   };
 
   /**
    * Helper method to reset game
    */
   const resetGame = () => {
-    setGameData(null);
+    setIsGameStart(false);
   };
 
   return (
     <>
-      {!gameData && <GameStartForm setGameDataFunc={initializeGameData} />}
-      {gameData && (
+      {!isGameStart && (
+        <GameStartForm
+          setGameDataFunc={initializeGameData}
+          currentGameData={gameData}
+        />
+      )}
+      {isGameStart && (
         <TableProvider>
           <MineSweeper gameData={gameData} resetGameFunc={resetGame} />
         </TableProvider>

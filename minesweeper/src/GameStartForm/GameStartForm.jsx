@@ -21,9 +21,10 @@ const getInitialGameData = () => {
  *
  * @param {object} props Properties that passed from the parent Component.
  * @param {function} props.setGameDataFunc Function to set game data
+ * @param {object} props.currentGameData game data for previous game
  * @return {React.ReactElement} a react element referring GameStartForm
  */
-const GameStartForm = ({ setGameDataFunc }) => {
+const GameStartForm = ({ setGameDataFunc, currentGameData }) => {
   // State
   const [warning, setWarning] = React.useState(false);
   const [msg, setMsg] = React.useState('');
@@ -66,7 +67,11 @@ const GameStartForm = ({ setGameDataFunc }) => {
     setWarning(false);
   }, []);
 
-  const initialGameData = getInitialGameData();
+  // If current game data is empty (no previous game),
+  // initialize game data using screen size.
+  const initialGameData = currentGameData
+    ? currentGameData
+    : getInitialGameData();
 
   return (
     <>
