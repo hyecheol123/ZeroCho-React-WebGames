@@ -220,6 +220,14 @@ Lecture Link: https://www.youtube.com/playlist?list=PLcqDmjxt30RtqbStQqk-eYMK8N-
     - When we use Context API, the the function of the Components re-runs everytime.
       - Use **React.useMemo()** to save returning value of the functional Component.
 
+- **React Router**
+  - Official Tutorial: https://reactrouter.com/docs/en/v6/getting-started/tutorial
+  - Used to route multiple pages in the react website.
+  - **BrowserRouter** uses HTML5 history API to update UI.
+    - The addresses are only available on front-end, not on back-end.
+    - When we refresh the page or access to the link directly, it will cause 404 error.
+  - **HashRouter** uses URL's hash (#).
+
 ## Project
 
 ### Times Table (GuGuDan) Game
