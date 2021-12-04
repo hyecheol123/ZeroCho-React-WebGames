@@ -4,6 +4,19 @@ import MineNumberWarningModal from './MineNumberWarningModal';
 import styles from '../../styles/GameStartForm/GameStartForm.module.css';
 
 /**
+ * Function to calculate initial game data based on the user's screen size
+ *
+ * @return {object} Object with initial value of nRow, nCol, and nMine
+ */
+const getInitialGameData = () => {
+  const nCol = Math.floor((window.innerWidth - 32) / 26);
+  const nRow = Math.floor((window.innerHeight - 123) / 26);
+  const nMine = Math.round(nCol * nRow * 0.25);
+
+  return { nRow, nCol, nMine };
+};
+
+/**
  * React Functional Component for GameStartForm (Get game setting)
  *
  * @param {object} props Properties that passed from the parent Component.
@@ -53,12 +66,18 @@ const GameStartForm = ({ setGameDataFunc }) => {
     setWarning(false);
   }, []);
 
+  const initialGameData = getInitialGameData();
+
   return (
     <>
       <div className={styles.GameStartForm}>
-        <Form ref={rowRef} label="row" />
-        <Form ref={columnRef} label="column" />
-        <Form ref={mineRef} label="mine" />
+        <Form ref={rowRef} label="row" initialValue={initialGameData.nRow} />
+        <Form
+          ref={columnRef}
+          label="column"
+          initialValue={initialGameData.nCol}
+        />
+        <Form ref={mineRef} label="mine" initialValue={initialGameData.nRow} />
         <button onClick={onClickBtn}>Go</button>
       </div>
       {warning && (

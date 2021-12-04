@@ -18,6 +18,8 @@ Used `Context API` and React Hooks (Functional Component) to build application.
 **What I added/modified**
 
 - User specify the game setting before enters the game.
+  - Initial row and column value is set to the maximum value that fill the screen without scroll.
+  - Initial mine value is set to the 25% of the cell number.
 - Change algorithm to open adjacent cells (BFS-based algorithm).
 - Rather than using right click, when user clicked a cell, it will display a menu to either flag or open the cell.
   - When user clicked on the flagged cell, the menu only have option to unflag the cell.

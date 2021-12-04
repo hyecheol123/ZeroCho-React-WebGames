@@ -6,12 +6,13 @@ import styles from '../../styles/GameStartForm/Form.module.css';
  *
  * @param {object} props Properties that passed from the parent Component.
  * @param {string} props.label Label of the form
+ * @param {number} props.initialValue Initial value of the form
  * @param {React.ForwardedRef} inputRef React.Ref pointing input.
  * @return {React.ReactElement} a react element referring Form
  */
-const Form = React.forwardRef(({ label }, inputRef) => {
+const Form = React.forwardRef(({ label, initialValue }, inputRef) => {
   // State
-  const [state, setState] = React.useState(1);
+  const [state, setState] = React.useState(initialValue);
 
   /**
    * Event Handler for input's change event
